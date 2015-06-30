@@ -1,15 +1,4 @@
 @include('Components.Partials.Layout.HeaderPage')
-<style>
-    footer.footer {
-        position: absolute;
-        bottom: 0;
-    }
-    .middle-content {
-        min-height: 60px;
-        max-height: 60px;
-        background-color: red;
-    }
-</style>
 
 <div class="container">
     <h1 class="section-title">Projeto e-Lixo</h1>
@@ -156,12 +145,5 @@
     </section>
 </div>
 <!-- area de atuação fim -->
-
-
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-    </div>
-</footer>
 
 @include('Components.Partials.Layout.BottomPage')

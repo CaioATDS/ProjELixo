@@ -5992,6 +5992,15 @@ button.close {
     display: none !important; } }
 
 /*# sourceMappingURL=app.css.map */
+footer.footer {
+    position: absolute;
+    bottom: 0;
+}
+.middle-content {
+    min-height: 60px;
+    max-height: 60px;
+    background-color: red;
+}
 /*!
  *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)

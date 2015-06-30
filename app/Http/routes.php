@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('Pages.MainPage');
 });
+
+Route::get('/Parceiros', function () {
+    return view('Pages.Parceiros');
+});
+
+Route::get('/Projeto', function () {
+    return view('Pages.Projeto');
+});
+
+Route::get('/Mapa', function () {
+    return view('Pages.Mapa');
+});
+
+Route::get('/Pontos', function () {
+    return view('Pages.Pontos');
+});
