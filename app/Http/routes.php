@@ -30,3 +30,7 @@ Route::get('/Mapa', function () {
 Route::get('/Pontos', function () {
     return view('Pages.Pontos');
 });
+
+// Authentication routes...
+Route::controller('auth', 'Auth\AuthController');
+Route::controller('password', 'Auth\PasswordController');

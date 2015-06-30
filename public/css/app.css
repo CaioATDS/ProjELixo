@@ -5991,4 +5991,7 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.login-form {
+  max-width: 600px; }
+
 /*# sourceMappingURL=app.css.map */

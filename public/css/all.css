@@ -5991,16 +5991,77 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.login-form {
+  max-width: 600px; }
+
 /*# sourceMappingURL=app.css.map */
 footer.footer {
     position: absolute;
     bottom: 0;
 }
+
 .middle-content {
     min-height: 60px;
     max-height: 60px;
     background-color: red;
 }
+
+.row
+{
+    margin-left   : auto;
+    margin-right  : auto;
+}
+
+.padding-none {
+    padding: 0 !important;
+}
+.padding-rl-5 {
+    padding-left : 5px;
+    padding-right: 5px;
+}
+.padding-rl-10 {
+    padding-left : 10px;
+    padding-right: 10px;
+}
+.padding-tb-5 {
+    padding-top   : 5px;
+    padding-bottom: 5px;
+}
+.padding-tb-10 {
+    padding-top   : 10px;
+    padding-bottom: 10px;
+}
+.padding-all-10 {
+  padding: 10px;
+}
+.margin-all-10 {
+    margin: 10px;
+}
+.margin-all-5 {
+    margin: 5px;
+    border: solid 1px #dddddd;
+}
+.margin-tb-5 {
+    margin: 5px 0;
+}
+.margin-tb-10 {
+    margin: 10px 0;
+}
+.radius-5 {
+    border: solid 1px #ccc;
+    border-radius: 5px;
+}
+.btn-transparent {
+    background: transparent;
+    color: #fff;
+&:hover,
+&:active,
+&:focus {
+     color: #fff;
+ }
+}
+
+
 /*!
  *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)

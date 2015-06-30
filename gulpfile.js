@@ -14,7 +14,7 @@ elixir(function (mix) {
         .copy(paths.bower_base_path + 'jquery/dist/jquery.min.js', 'public/js/vendor/jquery.js'),
         mix.styles([
             '../../../public/css/app.css',
-            'elixo.css',
+            'elixo.scss',
             'font-awesome.css'
         ]);
 
