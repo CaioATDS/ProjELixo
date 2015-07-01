@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('Pages.MainPage');
 });
 
+Route::get('/home', function () {
+    return view('Pages.MainPage');
+});
+
 Route::get('/Parceiros', function () {
     return view('Pages.Parceiros');
 });
@@ -34,3 +38,6 @@ Route::get('/Pontos', function () {
 // Authentication routes...
 Route::controller('auth', 'Auth\AuthController');
 Route::controller('password', 'Auth\PasswordController');
+// Authentication facebook routes
+Route::get('loginFacebook', 'FacebookController@login');
+Route::get('facebook', 'FacebookController@pageFacebook');

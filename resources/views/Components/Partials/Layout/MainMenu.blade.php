@@ -34,13 +34,14 @@ use Illuminate\Support\Facades\Auth;
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">  <span class="glyphicon glyphicon-user"></span> Usuário <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            @if( ! Auth::check())
-
-                            <li><a href="{{asset('auth/login')}}">Entrar</a></li>
-                            <li><a href="{{asset('auth/register')}}">Registrar</a></li>
+                            @if( !   Auth::check())
+                                <li><a href="{{asset('auth/login')}}">      Entrar</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{asset('auth/register')}}">   Registrar</a></li>
                             @else
-                            {{--<li class="divider"></li>--}}
-                            <li><a href="#">Perfil</a></li>
+                                <li><a href="#">Perfil</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ Auth::logout()  }}">Sair</a></li>
                             @endif
                         </ul>
                     </li>
