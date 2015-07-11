@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Pages.MainPage');
+use App\Http\Controllers\routes\HomeController;
+
+Route::group(['prefix' => ''], function(){
+
+    Route::get('/{home?}', [ 'as' => 'home', HomeController::index() ]);
+
 });
 
 Route::get('/Parceiros', function () {

@@ -1,7 +1,3 @@
-<?php
-use Illuminate\Support\Facades\Auth;
-?>
-
 <header class="block">
     <nav class="navbar navbar-default">
         <div class="container">
@@ -32,7 +28,7 @@ use Illuminate\Support\Facades\Auth;
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">  <span class="glyphicon glyphicon-user"></span> Usuário <b class="caret"></b></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">  <span class="glyphicon glyphicon-user"></span> {{$username or 'Usuário'}}  <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @if( ! Auth::check())
 
@@ -41,6 +37,7 @@ use Illuminate\Support\Facades\Auth;
                             @else
                             {{--<li class="divider"></li>--}}
                             <li><a href="#">Perfil</a></li>
+                            <li><a href="{{asset('/auth/logout')}}">Sair</a></li>
                             @endif
                         </ul>
                     </li>
