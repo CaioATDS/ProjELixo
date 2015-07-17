@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\routes;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {

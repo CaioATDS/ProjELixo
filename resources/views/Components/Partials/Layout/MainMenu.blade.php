@@ -30,7 +30,7 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">  <span class="glyphicon glyphicon-user"></span> {{$username or 'Usuário'}}  <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            @if( ! Auth::check())
+                            @if( ! Illuminate\Support\Facades\Auth::check())
 
                             <li><a href="{{asset('auth/login')}}">Entrar</a></li>
                             <li><a href="{{asset('auth/register')}}">Registrar</a></li>

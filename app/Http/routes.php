@@ -13,12 +13,6 @@
 
 use App\Http\Controllers\routes\HomeController;
 
-Route::group(['prefix' => ''], function(){
-
-    Route::get('/{home?}', [ 'as' => 'home', HomeController::index() ]);
-
-});
-
 Route::get('/Parceiros', function () {
     return view('Pages.Parceiros');
 });
@@ -38,3 +32,9 @@ Route::get('/Pontos', function () {
 // Authentication routes...
 Route::controller('auth', 'Auth\AuthController');
 Route::controller('password', 'Auth\PasswordController');
+
+Route::group(['prefix' => ''], function(){
+
+    Route::get('/{home?}', [ 'as' => 'home', HomeController::index() ]);
+
+});
