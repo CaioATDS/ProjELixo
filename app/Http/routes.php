@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\routes\HomeController;
+use App\Http\Controllers\routes\SubCategoriasController;
 
 Route::get('/Parceiros', function () {
     return view('Pages.Parceiros');
@@ -28,6 +29,11 @@ Route::get('/Mapa', function () {
 Route::get('/Pontos', function () {
     return view('Pages.Pontos');
 });
+
+Route::group(['prefix' => 'Subcategoria'], function() {
+    Route::get('/{id}', ['as => subcat,', SubCategoriasController::index()] );
+});
+
 
 // Authentication routes...
 Route::controller('auth', 'Auth\AuthController');

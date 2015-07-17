@@ -6004,6 +6004,7 @@ footer.footer {
     min-height: 60px;
     max-height: 60px;
     background-color: red;
+    display: block;
 }
 
 .row
