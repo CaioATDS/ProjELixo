@@ -2,12 +2,41 @@ footer.footer {
     position: absolute;
     bottom: 0;
 }
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#main-grid {
+    margin-bottom: 30px;
+}
 
 .middle-content {
     min-height: 60px;
     max-height: 60px;
-    background-color: red;
+    display: block;
 }
+
+.expanded-wrapper
+{
+    margin: 5px 0;
+
+    &hover{
+        text-decoration: none;
+    }
+}
+
+.expanded-wrapper span {
+     position: absolute;
+     top: 50%;
+     width: 100%;
+     transform: translate(-50%,-50%);
+ }
 
 .row
 {

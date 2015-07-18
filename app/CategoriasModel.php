@@ -10,7 +10,7 @@ class CategoriasModel extends Model
 
     static function getList()
     {
-        return self::all();
+        return self::orderby('categorias_descricao')->get();
     }
 
     static function getById($productId)

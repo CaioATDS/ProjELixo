@@ -1,35 +1,25 @@
 @include('Components.Partials.Layout.HeaderPage')
 
-<div class="container">
-    <h1 class="section-title">Projeto e-Lixo</h1>
-    <section id="main-grid" class="to-center">
-        <div class="row row-centered">
+    <div class="row row-centered">
 
-            @foreach($Categorias as $Categoria)
+        @foreach($Categorias as $Categoria)
 
-                <div class="col-md-3 col-xs-6 col-centered">
-                    <div class="blacks color-expansive color-square center-block">
+            <div class="col-md-3 col-xs-6 col-centered">
 
-                        <div class="expanded-wrapper">
+                <div class="expanded-wrapper">
 
-                            <span class="plus pull-right">+</span>
-
-                            <div class="middle-content text-center">
-                                <p>
-                                    <span><a class="middle-content" href="{{asset('Subcategoria/'.$Categoria->categoria_id)}}">{{$Categoria->categorias_descricao}}</a></span>
-                                </p>
-                            </div>
-
-                        </div>
-
+                    <div class="middle-content text-center radius-5">
+                        <a class="middle-content" href="{{asset('Subcategoria/'.$Categoria->categoria_id)}}">
+                            <span>{{$Categoria->categorias_descricao}}</span>
+                        </a>
                     </div>
+
                 </div>
 
-            @endforeach
+            </div>
 
-        </div>
-    </section>
-</div>
-<!-- area de atuação fim -->
+        @endforeach
+
+    </div>
 
 @include('Components.Partials.Layout.BottomPage')
