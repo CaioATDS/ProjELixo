@@ -28,7 +28,7 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">  <span class="glyphicon glyphicon-user"></span> {{$username or 'Usuário'}}  <b class="caret"></b></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">  <span class="glyphicon glyphicon-user"></span> {{$username or 'entrar'}}  <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @if( ! Illuminate\Support\Facades\Auth::check())
 

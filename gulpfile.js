@@ -15,7 +15,8 @@ elixir(function (mix) {
         mix.styles([
             '../../../public/css/app.css',
             'elixo.scss',
-            'font-awesome.css'
+            'font-awesome.css',
+            '_Forms.scss',
         ]);
 
 });
