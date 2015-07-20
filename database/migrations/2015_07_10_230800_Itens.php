@@ -13,6 +13,7 @@ class Itens extends Migration
             $table->integer('item_quantidade');
             $table->integer('modelos_id');
             $table->integer('coordenada_id');
+            $table->integer('item_status');
         });
     }
 

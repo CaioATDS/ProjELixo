@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\routes\HomeController;
+use App\Http\Controllers\routes\ItensController;
 use App\Http\Controllers\routes\SubCategoriasController;
 
 Route::get('/Parceiros', function () {
@@ -31,9 +32,13 @@ Route::get('/Pontos', function () {
 });
 
 Route::group(['prefix' => 'Subcategoria'], function() {
-    Route::get('/{id}', ['as => subcat,', SubCategoriasController::index()] );
+    Route::get('/{id}',         [ 'as' => 'subcat,      ', SubCategoriasController::index(), ]);
+
 });
 
+Route::group(['prefix' => 'itens'], function(){
+    Route::post('/selecionar',  ItensController::selecionar() );
+});
 
 // Authentication routes...
 Route::controller('auth', 'Auth\AuthController');
@@ -41,6 +46,6 @@ Route::controller('password', 'Auth\PasswordController');
 
 Route::group(['prefix' => ''], function(){
 
-    Route::get('/{home?}', [ 'as' => 'home', HomeController::index() ]);
+    Route::get('/{home?}', [ 'as' => 'home', HomeController::index(), ]);
 
 });
