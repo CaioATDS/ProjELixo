@@ -6,7 +6,6 @@ use App\ItensModel;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Input;
@@ -18,23 +17,30 @@ class ItensController extends Controller
     {
        return function() {
 
+           if ( ! Auth::check()):
+               dd('Apenas usuários logados');
+           endif;
+
            $modelo      = Input::get('modelo');
            $quantidade  = Input::get('quantidade');
+           $userid      = Auth::user()->id;
 
            foreach($modelo as $key => $n )
            {
+               if ($modelo[$key] == 0 || $quantidade[$key] == 0):
 
+               else:
                $arrData = [
                    'modelos_id'         => $modelo[$key],
                    'item_quantidade'    => $quantidade[$key],
-                   'item_userid'        => Auth::user()->id,
+                   'item_userid'        => $userid,
                ];
                $create = ItensModel::create($arrData);
+               endif;
            }
 
-
            return 'its done $create';
-
+//           TRUNCATE TABLE public.itens RESTART IDENTITY;
        };
     }
 

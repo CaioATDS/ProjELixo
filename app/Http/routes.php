@@ -36,7 +36,7 @@ Route::group(['prefix' => 'Subcategoria'], function() {
 
 });
 
-Route::group(['prefix' => 'itens'], function(){
+Route::group(['prefix' => 'itens', 'middleware' => 'auth'], function(){
     Route::post('/selecionar',  ItensController::selecionar() );
 });
 
