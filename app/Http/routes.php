@@ -31,12 +31,12 @@ Route::get('/Pontos', function () {
     return view('Pages.Pontos');
 });
 
-Route::group(['prefix' => 'Subcategoria'], function() {
+Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', ], function() {
     Route::get('/{id}',         [ 'as' => 'subcat,      ', SubCategoriasController::index(), ]);
 
 });
 
-Route::group(['prefix' => 'itens', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'itens', 'middleware' => 'auth', ], function(){
     Route::post('/selecionar',  ItensController::selecionar() );
 });
 

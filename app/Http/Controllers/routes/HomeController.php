@@ -5,7 +5,6 @@ namespace App\Http\Controllers\routes;
 use App\CategoriasModel;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,12 +12,8 @@ class HomeController extends Controller
     {
         return function(){
 
-            $username = Auth::check() ? Auth::user()->name : null;
-            $categorias = CategoriasModel::getList();
-
             return view('Pages.MainPage', [
-                'username' => $username,
-                'Categorias' => $categorias,
+                'Categorias' => CategoriasModel::getList(),
             ]);
         };
     }
