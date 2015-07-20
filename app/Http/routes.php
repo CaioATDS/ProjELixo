@@ -31,21 +31,31 @@ Route::get('/Pontos', function () {
     return view('Pages.Pontos');
 });
 
-Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', ], function() {
-    Route::get('/{id}',         [ 'as' => 'subcat,      ', SubCategoriasController::index(), ]);
+// apenas logados
+Route::group(['prefix' => '', 'middleware' => 'auth', ], function(){
 
 });
 
-Route::group(['prefix' => 'itens', 'middleware' => 'auth', ], function(){
-    Route::post('/selecionar',  ItensController::selecionar() );
+// rotas publicas
+Route::group(['prefix' => ''], function(){
+
+    Route::get('/{home?}', [ 'as' => 'home', HomeController::index(), ]);
+
 });
 
 // Authentication routes...
 Route::controller('auth', 'Auth\AuthController');
 Route::controller('password', 'Auth\PasswordController');
 
-Route::group(['prefix' => ''], function(){
+Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', ], function() {
 
-    Route::get('/{home?}', [ 'as' => 'home', HomeController::index(), ]);
+    Route::get('/{id}',         [ 'as' => 'subcat,      ', SubCategoriasController::index(), ]);
+
+});
+
+Route::group(['prefix' => 'itens', 'middleware' => 'auth', ], function(){
+
+    Route::post('/selecionar',  ItensController::selecionar() );
+    Route::get('/lixeira',      ItensController::lixeira() );
 
 });
