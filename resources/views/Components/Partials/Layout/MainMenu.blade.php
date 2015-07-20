@@ -28,14 +28,16 @@
                 {{--</form>--}}
                 <ul class="nav navbar-nav pull-right margin-all-10">
                     <li>
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-trash"></span>
-                            <sup style="position: absolute; margin-top: 8px; color: #f20d0d;">
-                                @if(Illuminate\Support\Facades\Auth::check())
-                                    <strong>{{ \App\ItensModel::count(Illuminate\Support\Facades\Auth::user()->id) }}</strong>
-                                @endif
-                            </sup>
-                        </button>
+                        <form action="{{asset('itens/lixeira')}}">
+                            <button type="submit" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <sup style="position: absolute; margin-top: 8px; color: #f20d0d;">
+                                    @if(Illuminate\Support\Facades\Auth::check())
+                                        <strong>{{ \App\ItensModel::count(Illuminate\Support\Facades\Auth::user()->id) }}</strong>
+                                    @endif
+                                </sup>
+                            </button>
+                        </form>
                     </li>
                 </ul>
 

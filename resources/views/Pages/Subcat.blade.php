@@ -21,7 +21,9 @@
                     <div class="form-group row margin-tb-5" style="width: 100%">
                         <input type="hidden" name="modelo[]" value="{{$Modelo->modelo_id}}">
                         <div class="col-xs-6 pull-left"><label for="quantidade[]">{{$Modelo->modelo_descricao}}</label></div>
-                        <div class="col-xs-6 pull-left" ><input type="number" name="quantidade[]" class="form-control" min="0" value="0"></div>
+                        <div class="col-xs-6 pull-left" >
+                            <input type="number" name="quantidade[]" class="form-control" min="0" value="{{ \App\Http\Controllers\routes\ItensController::modeloQuantidade($Modelo->modelo_id) }}">
+                        </div>
                     </div>
                 @endforeach
                 <br>

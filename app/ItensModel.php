@@ -25,12 +25,37 @@ class ItensModel extends Model
 
     static function usertrash($userid)
     {
-        return self::where('item_userid',$userid)->where('item_status', 0)->get();
+        return self::
+                    where('item_userid',$userid)
+                    ->where('item_status', 0)
+                    ->get();
     }
 
     static function userQuantidade($userid, $modelid)
     {
-        return self::where('modelos_id', $modelid)->where('item_userid',$userid)->where('item_status', 0)->value('item_quantidade');
+        return self::
+                    where('modelos_id', $modelid)
+                    ->where('item_userid',$userid)
+                    ->where('item_status', 0)
+                    ->value('item_quantidade');
+    }
+
+    static function userItemUpdate($userid, $modelid, $quantidade)
+    {
+        return self::
+                    where('modelos_id', $modelid)
+                    ->where('item_userid',$userid)
+                    ->where('item_status', 0)
+                    ->update(['item_quantidade' => $quantidade]);
+    }
+
+    static function userItemDelete($userid, $modelid)
+    {
+        return self::
+        where('modelos_id', $modelid)
+            ->where('item_userid',$userid)
+            ->where('item_status', 0)
+            ->delete();
     }
 
 }

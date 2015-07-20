@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Input;
+use Response;
 
 class ItensController extends Controller
 {
@@ -28,19 +29,33 @@ class ItensController extends Controller
 
            foreach($modelo as $key => $n )
            {
-               if ($modelo[$key] == 0 || $quantidade[$key] == 0):
+               if ($quantidade[$key] == 0 && ItensModel::userQuantidade($userid, $modelo[$key]) > 0):
 
+                   ItensModel::userItemDelete($userid, $modelo[$key]); // delete itens quando a quantidade selecionada for 0
+
+               elseif ($modelo[$key] == 0 || $quantidade[$key] == 0):
+                    /* do nothing just watch and dance <_< */
                else:
-               $arrData = [
-                   'modelos_id'         => $modelo[$key],
-                   'item_quantidade'    => $quantidade[$key],
-                   'item_userid'        => $userid,
-               ];
-               $create = ItensModel::create($arrData);
+                   $arrData = [
+                       'modelos_id'         => $modelo[$key],
+                       'item_quantidade'    => $quantidade[$key],
+                       'item_userid'        => $userid,
+                   ];
+
+                   if(ItensModel::userQuantidade($userid, $modelo[$key]) == 0):
+
+                       ItensModel::create($arrData); // se não selecionou ainda crie
+
+                   elseif(ItensModel::userQuantidade($userid, $modelo[$key]) > 0):
+
+                       ItensModel::userItemUpdate($arrData['item_userid'],$arrData['modelos_id'],$arrData['item_quantidade']); // se já selecionou apenas modifique.
+
+                   endif;
+
                endif;
            }
 
-           return 'its done $create';
+           return Response::json('Cadastrado com sucesso.');
 //           TRUNCATE TABLE public.itens RESTART IDENTITY;
        };
     }
