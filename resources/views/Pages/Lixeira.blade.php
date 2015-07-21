@@ -1,3 +1,4 @@
+{{--@include('Components.Partials.FormLixo', ['Lixeiras' => $Lixeiras, 'SubCat' => false ,  'Action' => 'itens/Reciclar', ])--}}
 @include('Components.Partials.Layout.HeaderPage')
 
 <div class="panel panel-default">
@@ -7,7 +8,7 @@
 
     <div class="panel-body">
 
-        <form class="form-inline" method="POST" action="{{asset('itens/selecionar')}}">
+        <form class="form-inline" method="POST" action="{{asset('itens/Reciclar')}}">
             {!! csrf_field() !!}
 
             <div class="row login-form radius-5 padding-all-10">

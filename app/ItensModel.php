@@ -49,6 +49,15 @@ class ItensModel extends Model
                     ->update(['item_quantidade' => $quantidade]);
     }
 
+    static function userItemRecicle($userid, $modelid, $quantidade)
+    {
+        return self::
+        where('modelos_id', $modelid)
+            ->where('item_userid',$userid)
+            ->where('item_status', 0)
+            ->update(['item_quantidade' => $quantidade, 'item_status' => 1, ]);
+    }
+
     static function userItemDelete($userid, $modelid)
     {
         return self::

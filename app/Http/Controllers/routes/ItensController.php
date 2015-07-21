@@ -44,7 +44,7 @@ class ItensController extends Controller
 
                    if(ItensModel::userQuantidade($userid, $modelo[$key]) == 0):
 
-                       ItensModel::create($arrData); // se não selecionou ainda crie
+                       ItensModel::create($arrData); // se o usuário ainda não selecionou ainda crie
 
                    elseif(ItensModel::userQuantidade($userid, $modelo[$key]) > 0):
 
@@ -82,4 +82,28 @@ class ItensController extends Controller
         return ItensModel::userQuantidade(Auth::user()->id, $modelid);
     }
 
+    public static function reciclar()
+    {
+        return function(){
+            if ( ! Auth::check() || ! Input::get('modelo') ):
+                return Response::json('Você não pode fazer isso');
+            endif;
+
+            $modelo      = Input::get('modelo');
+            $quantidade  = Input::get('quantidade');
+            $userid      = Auth::user()->id;
+
+            foreach($modelo as $key => $n )
+            {
+                if ($quantidade[$key] == 0 && ItensModel::userQuantidade($userid, $modelo[$key]) > 0):
+                    ItensModel::userItemDelete($userid, $modelo[$key]);
+                else:
+                    ItensModel::userItemRecicle($userid, $modelo[$key], $quantidade[$key]);
+                endif;
+            }
+
+            return Response::json('Material reciclado com sucesso.');
+
+        };
+    }
 }
