@@ -14,6 +14,7 @@
 use App\Http\Controllers\routes\HomeController;
 use App\Http\Controllers\routes\ItensController;
 use App\Http\Controllers\routes\SubCategoriasController;
+use App\Http\Controllers\Profile\ProfileController;
 
 Route::get('/Parceiros', function () {
     return view('Pages.Parceiros');
@@ -33,6 +34,8 @@ Route::get('/Pontos', function () {
 
 // apenas logados
 Route::group(['prefix' => '', 'middleware' => 'auth', ], function(){
+
+    Route::get('/Perfil', [ 'as' => 'profile', ProfileController::index(), ]);
 
 });
 
@@ -58,4 +61,5 @@ Route::group(['prefix' => 'itens', 'middleware' => 'auth', ], function(){
     Route::post('/selecionar',  ItensController::selecionar() );
     Route::post('/Reciclar',    ItensController::reciclar() );
     Route::get('/lixeira',      ItensController::lixeira() );
+
 });
