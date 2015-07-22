@@ -67,7 +67,21 @@ class ItensController extends Controller
             $userid = Auth::user()->id;
 
             return view('Pages.Lixeira', [
-                'Lixeiras' => ItensModel::usertrash($userid),
+                'Lixeiras'  => ItensModel::usertrash($userid),
+                'UserID'    => $userid,
+            ]);
+        };
+    }
+
+    public static function reciclados()
+    {
+        return function(){
+
+            $userid = Auth::user()->id;
+
+            return view('Pages.Recicleds', [
+                'Lixeiras'  => ItensModel::userrecicleds($userid),
+                'UserID'   => $userid
             ]);
         };
     }
@@ -75,11 +89,6 @@ class ItensController extends Controller
     public static function modeloNome($modelid)
     {
        return modelosModel::getDescricao($modelid);
-    }
-
-    public static function modeloQuantidade($modelid)
-    {
-        return ItensModel::userQuantidade(Auth::user()->id, $modelid);
     }
 
     public static function reciclar()

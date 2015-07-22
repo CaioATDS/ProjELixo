@@ -7,6 +7,7 @@ use App\modelosModel;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SubCategoriasController extends Controller
 {
@@ -20,6 +21,7 @@ class SubCategoriasController extends Controller
             return view('Pages.Subcat', [
                 'Pid'       => $details->categorias_descricao,
                 'Modelos'   => $modelos,
+                'UserID'    => Auth::user()->id,
             ]);
         };
     }

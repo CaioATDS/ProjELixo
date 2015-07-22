@@ -58,8 +58,9 @@ Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', ], function() 
 
 Route::group(['prefix' => 'itens', 'middleware' => 'auth', ], function(){
 
-    Route::post('/selecionar',  ItensController::selecionar() );
-    Route::post('/Reciclar',    ItensController::reciclar() );
-    Route::get('/lixeira',      ItensController::lixeira() );
+    Route::post('/selecionar',  ItensController::selecionar()   );
+    Route::post('/Reciclar',    ItensController::reciclar()     );
+    Route::get('/lixeira',      ItensController::lixeira()      );
+    Route::get('/reciclados',   ItensController::reciclados()   );
 
 });
