@@ -6039,6 +6039,13 @@ small {
      width: 100%;
      transform: translate(-50%,-50%);
  }
+.btn-left {
+    position    : absolute;
+    right       : 10px;
+}
+.space-right {
+    margin-right: 75px;
+}
 
 .row
 {
@@ -6053,6 +6060,10 @@ small {
     padding-left : 5px;
     padding-right: 5px;
 }
+.padding-rl-31 {
+    padding-left: 3px !important;
+    padding-right: 1px !important;
+}
 .padding-rl-10 {
     padding-left : 10px;
     padding-right: 10px;
@@ -6064,6 +6075,9 @@ small {
 .padding-tb-10 {
     padding-top   : 10px;
     padding-bottom: 10px;
+}
+.padding-all-5 {
+    padding: 5px;
 }
 .padding-all-10 {
   padding: 10px;
@@ -6093,6 +6107,13 @@ small {
 &:focus {
      color: #fff;
  }
+}
+@media (max-width:767px) {
+
+    .btn-left {
+        margin-top  : -10px;
+    }
+
 }
 
 

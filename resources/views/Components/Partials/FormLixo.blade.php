@@ -1,6 +1,7 @@
 @include('Components.Partials.Layout.HeaderPage')
 
 <div class="panel panel-default">
+
     @if($SubCat == true)
         <div class="panel-heading"><strong>Categoria:</strong> {{ $Pid }}
             <span><small>Caso seu modelo não se encontre na lista use o Modelo mais próximo:</small></span>
@@ -10,6 +11,7 @@
             <span><small>Confira os itens e a quantidade do que será entregue para reciclagem.</small></span>
         </div>
     @endif
+
     <div class="panel-body">
 
         <form class="form-inline" method="POST" action="{{asset($Action)}}">

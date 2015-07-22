@@ -2,25 +2,32 @@
 
 <div class="panel panel-default">
 
+    <div class="panel-heading">
+        <strong>Itens Reciclados</strong>
+        <small>Aqui você pode ver todos os itens que você já entregou para reciclagem.</small>
+    </div>
     <div class="panel-body">
 
-        <div class="row login-form radius-5 padding-all-10">
-            <div>
-                <div class="col-xs-6"><label><strong>Item</strong></label></div>
-                <div class="col-xs-6"><label><strong>Quantidade</strong></label></div>
-            </div>
-            <br>
-            <br>
-            @foreach($Lixeiras as $Lixeira)
-                <div class="form-group row margin-tb-5" style="width: 100%">
-                    <div class="col-xs-6 pull-left">
-                        {{ \App\Http\Controllers\routes\ItensController::modeloNome($Lixeira->modelos_id) }}
-                    </div>
-                    <div class="col-xs-6 pull-left" >
-                        {{ \App\ItensModel::userQuantidade($UserID, $Lixeira->modelos_id, 1) }}
-                    </div>
-                </div>
-            @endforeach
+        <table class="table table-bordered">
+            <thead>
+
+                <tr>
+                    <th class="text-right">Item:</th>
+                    <th>Quantidade:</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                @foreach($Lixeiras as $Lixeira)
+                <tr>
+                    <td class="text-right col-xs-4">{{ \App\Http\Controllers\routes\ItensController::modeloNome($Lixeira->modelos_id) }}</td>
+                    <td class="col-xs-8">{{ \App\ItensModel::userQuantidade($UserID, $Lixeira->modelos_id, 1) }}</td>
+                </tr>
+                @endforeach
+
+            </tbody>
+        </table>
 
     </div>
 
