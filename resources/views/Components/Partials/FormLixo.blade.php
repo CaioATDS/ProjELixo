@@ -34,7 +34,7 @@
 
                         <div class="col-xs-6 pull-left">
                             <label for="quantidade[]">
-                                {{ ($SubCat == true) ? $Lixeira->modelo_descricao : \App\Http\Controllers\routes\ItensController::modeloNome($Lixeira->modelos_id) }}
+                                {{ \App\Http\Controllers\routes\ItensController::modeloNome($ModeloID) }}
                             </label>
                         </div>
                         <div class="col-xs-6 pull-left" >
@@ -45,7 +45,7 @@
                 <br>
                 <br>
                 <div class="form-group padding-rl-10 col-x2-12 btn-center">
-                    <button type="submit" class="btn btn-success">Reciclar</button>
+                    <button id="submitButton" type="submit" class="btn btn-success">{{ ($SubCat == true) ? 'Colocar na lixeira' : 'Reciclar' }}</button>
                 </div>
 
             </div>

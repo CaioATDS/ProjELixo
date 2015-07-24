@@ -20,7 +20,7 @@ class ItensController extends Controller
        return function() {
 
            if ( ! Auth::check()):
-               dd('Apenas usuários logados');
+               return redirect('/')->with('error', 'Apenas usuários logados!');
            endif;
 
            $modelo      = Input::get('modelo');
@@ -55,7 +55,7 @@ class ItensController extends Controller
                endif;
            }
 
-           return Response::json('Cadastrado com sucesso.');
+           return redirect('/')->with('status', 'Cadastrado com sucesso!');
 //           TRUNCATE TABLE public.itens RESTART IDENTITY;
        };
     }
@@ -95,7 +95,7 @@ class ItensController extends Controller
     {
         return function(){
             if ( ! Auth::check() || ! Input::get('modelo') ):
-                return Response::json('Você não pode fazer isso');
+                return redirect('/')->with('error', 'Você não pode fazer isso!');
             endif;
 
             $modelo      = Input::get('modelo');
@@ -111,7 +111,7 @@ class ItensController extends Controller
                 endif;
             }
 
-            return Response::json('Material reciclado com sucesso.');
+            return redirect('/')->with('status', 'Material reciclado com sucesso!');
 
         };
     }
