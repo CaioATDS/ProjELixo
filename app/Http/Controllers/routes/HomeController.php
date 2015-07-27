@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\routes;
 
-use App\CategoriasModel;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\CategoriasModel;
 
 class HomeController extends Controller
 {

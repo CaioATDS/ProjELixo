@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\routes;
 
-use App\CategoriasModel;
-use App\modelosModel;
+use App\Models\CategoriasModel;
+use App\Models\modelosModel;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\routes;
 
-use App\ItensModel;
-use App\modelosModel;
-use App\User;
+use App\Models\ItensModel;
+use App\Models\modelosModel;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Input;
-use Response;
 
 class ItensController extends Controller
 {

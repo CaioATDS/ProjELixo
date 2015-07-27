@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class ItensModel extends Model
