@@ -6108,6 +6108,11 @@ small {
      color: #fff;
  }
 }
+/*override*/
+.panel {
+    margin-bottom: 60px;
+}
+/*override*/
 @media (max-width:767px) {
 
     .btn-left {
