@@ -74,4 +74,13 @@ class ItensModel extends Model
                         ->delete();
     }
 
+    static function itemNotCollected()
+    {
+        return self::
+                    where('item_status', 1)
+                        ->where('item_colected', 0 )
+                        ->orderBy('modelos_id', 'asc')
+                        ->get()->toArray();
+    }
+
 }

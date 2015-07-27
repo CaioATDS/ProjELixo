@@ -31,7 +31,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{asset('/Parceiros')}}">  Parceiros        </a></li>
                     <li><a href="{{asset('/Projeto')}}">    Projeto          </a></li>
-                    <li><a href="{{asset('/Mapa')}}">       Mapa e-Lixo   </a></li>
+                    <li><a href="{{asset('/Mapa')}}">       Mapa e-Lixo      </a></li>
                     <li><a href="{{asset('/Pontos')}}">     Pontos de Coleta </a></li>
                 </ul>
 
@@ -45,12 +45,13 @@
                         <ul class="dropdown-menu">
                             @if( ! Illuminate\Support\Facades\Auth::check())
 
-                            <li><a href="{{asset('auth/login')}}">Entrar</a></li>
-                            <li><a href="{{asset('auth/register')}}">Registrar</a></li>
+                            <li><a href="{{asset('auth/login')}}">      Entrar      </a></li>
+                            <li><a href="{{asset('auth/register')}}">   Registrar   </a></li>
                             @else
                             {{--<li class="divider"></li>--}}
-                            <li><a href="{{asset('/Perfil')}}">Perfil</a></li>
-                            <li><a href="{{asset('/auth/logout')}}">Sair</a></li>
+                            <li><a href="{{asset('/Perfil')}}">     Perfil   </a></li>
+                            <li><a href="{{asset('Admin/Coleta')}}">     Coleta   </a></li>
+                            <li><a href="{{asset('/auth/logout')}}">Sair     </a></li>
                             @endif
                             <li></li>
                         </ul>

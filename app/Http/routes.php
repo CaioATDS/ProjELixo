@@ -15,6 +15,7 @@ use App\Http\Controllers\routes\HomeController;
 use App\Http\Controllers\routes\ItensController;
 use App\Http\Controllers\routes\SubCategoriasController;
 use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\Administrator\ColetaController;
 
 Route::get('/Parceiros', function () {
     return view('Pages.Parceiros');
@@ -53,6 +54,12 @@ Route::controller('password', 'Auth\PasswordController');
 Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', ], function() {
 
     Route::get('/{id}',         [ 'as' => 'subcat,      ', SubCategoriasController::index(), ]);
+
+});
+
+Route::group(['prefix' => 'Admin', 'middleware' => 'auth', ], function(){
+
+    Route::get('/Coleta',    ColetaController::index()     );
 
 });
 
