@@ -13,7 +13,9 @@
 
                 <tr>
                     <th class="text-right">Item:</th>
-                    <th>Quantidade:</th>
+                    <th>Quant.:</th>
+                    <th>Cadastrado:</th>
+                    <th>Confirmado:</th>
                 </tr>
 
             </thead>
@@ -22,7 +24,9 @@
                 @foreach($Lixeiras as $Lixeira)
                 <tr>
                     <td class="text-right col-xs-4">{{ \App\Http\Controllers\routes\ItensController::modeloNome($Lixeira->modelos_id) }}</td>
-                    <td class="col-xs-8">{{ \App\Models\ItensModel::userQuantidade($UserID, $Lixeira->modelos_id, 1) }}</td>
+                    <td class="col-xs-1 text-center">{{ \App\Models\ItensModel::userQuantidade($UserID, $Lixeira->modelos_id, 1) }}</td>
+                    <td class="col-xs-4">{{ date("d-m-Y h:i", strtotime($Lixeira->created_at)) }}</td>
+                    <td class="col-xs-4">{{ date("d-m-Y h:i", strtotime($Lixeira->updated_at)) }}</td>
                 </tr>
                 @endforeach
 

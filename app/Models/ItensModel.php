@@ -30,7 +30,7 @@ class ItensModel extends Model
                     ->get();
     }
 
-    static function userrecicleds($userid) // itens que já foram reciclados pelo usuário
+    static function userrecicleds($userid) // selecionar itens que já foram reciclados pelo usuário
     {
         return self::
                     where('item_userid',$userid)
