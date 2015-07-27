@@ -38,7 +38,7 @@
                             </label>
                         </div>
                         <div class="col-xs-6 pull-left" >
-                            <input type="number" name="quantidade[]" class="form-control" min="0" value="{{ \App\ItensModel::userQuantidade($UserID, $ModeloID) }}">
+                            <input type="number" name="quantidade[]" class="form-control" min="0" value="{{ \App\Models\ItensModel::userQuantidade($UserID, $ModeloID) }}">
                         </div>
                     </div>
                 @endforeach

@@ -21,11 +21,11 @@
             </tr>
             <tr>
                 <td class="col-xs-2 text-right">Reciclados: </td>
-                <td class="col-xs-10"><a href="{{asset('/itens/reciclados')}}">{{ \App\ItensModel::count($UserId,1) }}</a></td>
+                <td class="col-xs-10"><a href="{{asset('/itens/reciclados')}}">{{ \App\Models\ItensModel::count($UserId,1) }}</a></td>
             </tr>
             <tr>
                 <td class="col-xs-2 text-right">Na Lixeira: </td>
-                <td class="col-xs-10"><a href="{{asset('/itens/lixeira')}}">{{ \App\ItensModel::count($UserId) }}</a></td>
+                <td class="col-xs-10"><a href="{{asset('/itens/lixeira')}}">{{ \App\Models\ItensModel::count($UserId) }}</a></td>
             </tr>
             </tbody>
         </table>

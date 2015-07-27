@@ -19,7 +19,7 @@
                     </button>
                     <sup style="position: absolute; color: #f20d0d; margin-top: 14px; right: 10px;">
                         @if(Illuminate\Support\Facades\Auth::check())
-                            <strong>{{ \App\ItensModel::count(Illuminate\Support\Facades\Auth::user()->id) }}</strong>
+                            <strong>{{ \App\Models\ItensModel::count(Illuminate\Support\Facades\Auth::user()->id) }}</strong>
                         @endif
                     </sup>
                 </form>

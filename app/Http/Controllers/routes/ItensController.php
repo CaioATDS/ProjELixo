@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\routes;
 
 use App\Models\ItensModel;
-use App\Models\modelosModel;
+use App\Models\ModelosModel;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -85,7 +85,7 @@ class ItensController extends Controller
 
     public static function modeloNome($modelid)
     {
-       return modelosModel::getDescricao($modelid);
+       return ModelosModel::getDescricao($modelid);
     }
 
     public static function reciclar()

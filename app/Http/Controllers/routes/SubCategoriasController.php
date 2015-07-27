@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\routes;
 
 use App\Models\CategoriasModel;
-use App\Models\modelosModel;
-use Illuminate\Http\Request;
+use App\Models\ModelosModel;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +15,7 @@ class SubCategoriasController extends Controller
         return function($id){
 
             $details = CategoriasModel::getById($id);
-            $modelos = modelosModel::getById($id);
+            $modelos = ModelosModel::getById($id);
 
             return view('Pages.Subcat', [
                 'Pid'       => $details->categorias_descricao,

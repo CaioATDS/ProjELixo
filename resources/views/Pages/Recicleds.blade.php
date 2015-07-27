@@ -22,7 +22,7 @@
                 @foreach($Lixeiras as $Lixeira)
                 <tr>
                     <td class="text-right col-xs-4">{{ \App\Http\Controllers\routes\ItensController::modeloNome($Lixeira->modelos_id) }}</td>
-                    <td class="col-xs-8">{{ \App\ItensModel::userQuantidade($UserID, $Lixeira->modelos_id, 1) }}</td>
+                    <td class="col-xs-8">{{ \App\Models\ItensModel::userQuantidade($UserID, $Lixeira->modelos_id, 1) }}</td>
                 </tr>
                 @endforeach
 
