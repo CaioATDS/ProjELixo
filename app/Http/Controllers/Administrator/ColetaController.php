@@ -89,4 +89,20 @@ class ColetaController extends Controller
         };
     }
 
+    public static function coletados()
+    {
+        return function()
+        {
+
+            $userid      = Auth::user()->id;
+
+            return view('Pages.Recicleds',
+                [
+                    'Lixeiras'  => ItensModel::itemCollected(),
+                    'UserID'    => $userid,
+                ]);
+
+        };
+    }
+
 }

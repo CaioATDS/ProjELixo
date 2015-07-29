@@ -48,10 +48,12 @@
                             <li><a href="{{asset('auth/login')}}">      Entrar      </a></li>
                             <li><a href="{{asset('auth/register')}}">   Registrar   </a></li>
                             @else
-                            {{--<li class="divider"></li>--}}
-                            <li><a href="{{asset('/Perfil')}}">     Perfil   </a></li>
-                            <li><a href="{{asset('Admin/Coleta')}}">     Coleta   </a></li>
-                            <li><a href="{{asset('/auth/logout')}}">Sair     </a></li>
+                            <li><a href="{{asset('/Perfil')}}">          Perfil     </a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{asset('Admin/Coleta')}}">     Coleta     </a></li>
+                            <li><a href="{{asset('Admin/Coletados')}}">  Coletados  </a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{asset('/auth/logout')}}">     Sair       </a></li>
                             @endif
                             <li></li>
                         </ul>

@@ -35,7 +35,7 @@ class ItensModel extends Model
         return self::
                     where('item_userid',$userid)
                         ->where('item_status', 1)
-                        ->get();
+                        ->paginate(10);
     }
 
     static function userQuantidade($userid, $modelid, $status = null) // Quantidade de itenns na lixeira
@@ -92,4 +92,11 @@ class ItensModel extends Model
                         ->get()->toArray();
     }
 
+    static function itemCollected() // listar itens para serem coletados
+    {
+        return self::
+                    where('item_colected', 1 )
+                    ->orderBy('modelos_id', 'asc')
+                    ->paginate(10);
+    }
 }

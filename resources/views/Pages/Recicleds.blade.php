@@ -25,13 +25,22 @@
                 <tr>
                     <td class="text-right col-xs-4">{{ \App\Http\Controllers\routes\ItensController::modeloNome($Lixeira->modelos_id) }}</td>
                     <td class="col-xs-1 text-center">{{ \App\Models\ItensModel::userQuantidade($UserID, $Lixeira->modelos_id, 1) }}</td>
-                    <td class="col-xs-4">{{ date("d-m-Y h:i", strtotime($Lixeira->created_at)) }}</td>
-                    <td class="col-xs-4">{{ date("d-m-Y h:i", strtotime($Lixeira->updated_at)) }}</td>
+                    <td class="col-xs-4">
+                        {{ date("d-m-Y", strtotime($Lixeira->created_at)) }}<br>
+                        <small> {{ date("h:i", strtotime($Lixeira->created_at)) }} </small>
+                    </td>
+                    <td class="col-xs-4">
+                        {{ date("d-m-Y", strtotime($Lixeira->updated_at)) }}<br>
+                        <small> {{ date("h:i", strtotime($Lixeira->updated_at)) }} </small>
+                    </td>
+
                 </tr>
                 @endforeach
 
             </tbody>
         </table>
+
+        {!!$Lixeiras->render()!!} <!-- paginator -->
 
     </div>
 

@@ -59,8 +59,9 @@ Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', ], function() 
 
 Route::group(['prefix' => 'Admin', 'middleware' => 'auth', ], function(){
 
-    Route::get('/Coleta',    ColetaController::index()     );
-    Route::post('/Coletar',  ColetaController::store()     );
+    Route::get('/Coleta',       ColetaController::index()       );
+    Route::get('/Coletados',    ColetaController::coletados()   );
+    Route::post('/Coletar',     ColetaController::store()       );
 
 });
 

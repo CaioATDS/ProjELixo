@@ -6005,6 +6005,9 @@ html, body {
     height: 100%;
 }
 
+th {
+  border-bottom: transparent !important;
+}
 small {
     font-style: italic;
 }
@@ -6115,6 +6118,14 @@ small {
 /*override*/
 @media (max-width:767px) {
 
+    body{
+        font-size: 12px;
+    }
+    .table > tbody > tr > td,
+    .table-bordered > thead > tr > th,
+    .table-bordered > thead > tr > td {
+      padding: 1px;
+    }
     .btn-left {
         margin-top  : -10px;
     }
