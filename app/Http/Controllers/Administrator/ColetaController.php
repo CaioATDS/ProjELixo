@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Administrator;
 
+use App\Models\ColetasModel;
 use App\Models\ItensModel;
+use App\Models\RecolhidosModel;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Input;
 
 class ColetaController extends Controller
 {
@@ -30,14 +33,15 @@ class ColetaController extends Controller
                         [
                             'modelos_id'        => $item['modelos_id'],
                             'item_quantidade'   => $item['item_quantidade'],
-                        ];
+                            'item_userid'       => $item['item_userid'],
+                    ];
 
                 endif;
 
             endforeach;
 
             $userid      = Auth::user()->id;
-            
+
             return view('Pages.Coleta',
                 [
                     'Lixeiras'  => $Lixeiras,
@@ -47,67 +51,42 @@ class ColetaController extends Controller
         };
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
+    public static function store()
     {
-        //
+        return function()
+        {
+
+
+            if ( ! Auth::check()):
+                return redirect('/')->with('error', 'Apenas usuários logados!');
+            endif;
+
+            $Modelo         = Input::get('modelo');
+            $Quantidade     = Input::get('quantidade');
+            $ItemUserid     = Input::get('item_userid');
+            $UserID         = Auth::user()->id;
+
+            $ColetaCodigo   = ColetasModel::create([ 'user_codigo' => $UserID, 'empresa_codigo' =>666, ])->id; // registra a nova coleta no DB
+
+
+            foreach($Modelo as $key => $n )
+            {
+
+                $ArrData = [
+                    'modelos_id'         => $Modelo[$key],
+                    'item_quantidade'    => $Quantidade[$key],
+                    'item_userid'        => $UserID,
+                    'coleta_codigo'      => $ColetaCodigo,
+                ];
+
+                $create     = RecolhidosModel::create($ArrData); // registra os detalhes da coleta
+                $asColected = ItensModel::itemAsColected($Modelo[$key], $ItemUserid[$key]);
+
+            }
+
+            return redirect('/')->with('status', 'Cadastrado com sucesso!');
+
+        };
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

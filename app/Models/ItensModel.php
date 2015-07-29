@@ -56,6 +56,15 @@ class ItensModel extends Model
                     ->update(['item_quantidade' => $quantidade]);
     }
 
+    static function itemAsColected($modelid, $ItemUserid) // atualiza a quantidade de itens na lixeira
+    {
+        return self::
+                    where('modelos_id', $modelid)
+                        ->where('item_userid', $ItemUserid)
+                        ->where('item_colected', 0)
+                        ->update(['item_colected' => 1]);
+    }
+
     static function userItemRecicle($userid, $modelid, $quantidade) // confirma itens da lixeira
     {
         return self::
@@ -74,7 +83,7 @@ class ItensModel extends Model
                         ->delete();
     }
 
-    static function itemNotCollected()
+    static function itemNotCollected() // listar itens para serem coletados
     {
         return self::
                     where('item_status', 1)

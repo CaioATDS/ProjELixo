@@ -6,7 +6,7 @@
     </div>
     <div class="panel-body">
 
-        <form class="form-inline" method="POST" action="">
+        <form class="form-inline" method="POST" action="Coletar">
             {!! csrf_field() !!}
 
             <div class="row login-form radius-5 padding-all-10">
@@ -20,6 +20,7 @@
                     <div class="form-group row margin-tb-5" style="width: 100%">
 
                         <input type="hidden" name="modelo[]" value="{{$Lixeira['modelos_id']}}">
+                        <input type="hidden" name="item_userid[]" value="{{$Lixeira['item_userid']}}">
 
                         <div class="col-xs-6 pull-left">
                             <label for="quantidade[]">
