@@ -44,14 +44,16 @@
                         </a>
                         <ul class="dropdown-menu">
                             @if( ! Illuminate\Support\Facades\Auth::check())
-                            <li><a href="{{asset('auth/login')}}">      Entrar      </a></li>
-                            <li><a href="{{asset('auth/register')}}">   Registrar   </a></li>
+                                <li><a href="{{asset('auth/login')}}">      Entrar      </a></li>
+                                <li><a href="{{asset('auth/register')}}">   Registrar   </a></li>
                             @else
                             <li><a href="{{asset('/Perfil')}}">          Perfil     </a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{asset('Admin/Coleta')}}">     Coleta     </a></li>
-                            <li><a href="{{asset('Admin/Coletados')}}">  Coletados  </a></li>
-                            <li class="divider"></li>
+                                @if( \App\Http\Controllers\Auth\RolesController::validar('Aluno'))
+                                    <li class="divider"></li>
+                                    <li><a href="{{asset('Admin/Coleta')}}">     Coleta     </a></li>
+                                    <li><a href="{{asset('Admin/Coletados')}}">  Coletados  </a></li>
+                                    <li class="divider"></li>
+                                @endif
                             <li><a href="{{asset('/auth/logout')}}">     Sair       </a></li>
                             @endif
                             <li></li>

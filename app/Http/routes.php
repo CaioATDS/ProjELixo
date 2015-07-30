@@ -34,7 +34,7 @@ Route::get('/Pontos', function () {
 });
 
 // apenas logados
-Route::group(['prefix' => '', 'middleware' => 'auth', ], function(){
+Route::group(['prefix' => '', 'middleware' => 'auth', 'roles:Usuário', ], function(){
 
     Route::get('/Perfil', [ 'as' => 'profile', ProfileController::index(), ]);
 
@@ -51,13 +51,13 @@ Route::group(['prefix' => ''], function(){
 Route::controller('auth', 'Auth\AuthController');
 Route::controller('password', 'Auth\PasswordController');
 
-Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', ], function() {
+Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', 'roles:Usuário', ], function() {
 
     Route::get('/{id}',         [ 'as' => 'subcat,      ', SubCategoriasController::index(), ]);
 
 });
 
-Route::group(['prefix' => 'Admin', 'middleware' => 'auth', ], function(){
+Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'roles:Aluno',], ], function(){
 
     Route::get('/Coleta',       ColetaController::index()       );
     Route::get('/Coletados',    ColetaController::coletados()   );
@@ -65,7 +65,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => 'auth', ], function(){
 
 });
 
-Route::group(['prefix' => 'itens', 'middleware' => 'auth', ], function(){
+Route::group(['prefix' => 'itens', 'middleware' => 'auth', 'roles:Usuário', ], function(){
 
     Route::post('/selecionar',  ItensController::selecionar()   );
     Route::post('/Reciclar',    ItensController::reciclar()     );
