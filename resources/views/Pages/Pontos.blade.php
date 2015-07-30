@@ -1,4 +1,5 @@
 @include('Components.Partials.Layout.HeaderPage')
+
 <div class="panel panel-default">
 
     <div class="panel-heading"><strong>Pontos de Coleta:</strong>

@@ -13,25 +13,10 @@
 
 use App\Http\Controllers\routes\HomeController;
 use App\Http\Controllers\routes\ItensController;
+use App\Http\Controllers\routes\StaticasController;
 use App\Http\Controllers\routes\SubCategoriasController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Administrator\ColetaController;
-
-Route::get('/Parceiros', function () {
-    return view('Pages.Parceiros');
-});
-
-Route::get('/Projeto', function () {
-    return view('Pages.Projeto');
-});
-
-Route::get('/Mapa', function () {
-    return view('Pages.Mapa');
-});
-
-Route::get('/Pontos', function () {
-    return view('Pages.Pontos');
-});
 
 // apenas logados
 Route::group(['prefix' => '', 'middleware' => 'auth', 'roles:Usuário', ], function(){
@@ -40,10 +25,14 @@ Route::group(['prefix' => '', 'middleware' => 'auth', 'roles:Usuário', ], funct
 
 });
 
-// rotas publicas
+// rotas publicas paginas estáticas
 Route::group(['prefix' => ''], function(){
 
-    Route::get('/{home?}', [ 'as' => 'home', HomeController::index(), ]);
+    Route::get('/Parceiros',    [ 'as' => 'parceiros',  StaticasController::parceiros(), ]);
+    Route::get('/Projeto',      [ 'as' => 'projeto',    StaticasController::projeto(),   ]);
+    Route::get('/Mapa',         [ 'as' => 'mapa',       StaticasController::mapa(),      ]);
+    Route::get('/Pontos',       [ 'as' => 'pontos',     StaticasController::pontos(),    ]);
+    Route::get('/{home?}',      [ 'as' => 'home',       HomeController::index(),         ]);
 
 });
 
