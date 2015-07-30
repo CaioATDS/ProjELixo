@@ -12,10 +12,10 @@
             <thead>
 
                 <tr>
-                    <th class="text-right">Item:</th>
-                    <th>Quant.:</th>
-                    <th>Cadastrado:</th>
-                    <th>Confirmado:</th>
+                    <th class="text-right">Item</th>
+                    <th>Quant.</th>
+                    <th>Cadastrado</th>
+                    <th>Confirmado</th>
                 </tr>
 
             </thead>
@@ -27,11 +27,11 @@
                     <td class="col-xs-1 text-center">{{ \App\Models\ItensModel::userQuantidade($UserID, $Lixeira->modelos_id, 1) }}</td>
                     <td class="col-xs-4">
                         {{ date("d-m-Y", strtotime($Lixeira->created_at)) }}<br>
-                        <small> {{ date("h:i", strtotime($Lixeira->created_at)) }} </small>
+                        <sup> {{ date("h:i", strtotime($Lixeira->created_at)) }} </sup>
                     </td>
                     <td class="col-xs-4">
                         {{ date("d-m-Y", strtotime($Lixeira->updated_at)) }}<br>
-                        <small> {{ date("h:i", strtotime($Lixeira->updated_at)) }} </small>
+                        <sup> {{ date("h:i", strtotime($Lixeira->updated_at)) }} </sup>
                     </td>
 
                 </tr>

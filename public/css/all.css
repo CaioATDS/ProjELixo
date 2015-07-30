@@ -6008,7 +6008,7 @@ html, body {
 th {
   border-bottom: transparent !important;
 }
-small {
+small, sup {
     font-style: italic;
 }
 
@@ -6026,10 +6026,12 @@ small {
     max-height: 60px;
     display: block;
 }
-
+.navbar-form {
+  border-color: transparent !important;
+}
 .expanded-wrapper
 {
-    margin: 5px 0;
+    margin: 5px -10px;
 
     &hover{
         text-decoration: none;

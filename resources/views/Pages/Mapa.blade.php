@@ -1,12 +1,21 @@
 @include('Components.Partials.Layout.HeaderPage')
 
-<div class="container">
-    <div class="row table-row">
-        <div id="map" class="col-sm-12 custom map" style="min-width: 100%; min-height: 450px; width: 100%; height: 100%;"></div>
-    </div>
-</div>
-<!--- javascript -->
+<div class="panel panel-default">
 
+    <div class="panel-heading"><strong>Mapa:</strong>
+        <span><small>Forma como o lixo eletronico está distribuida pela cidade:</small></span>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row table-row">
+            <div id="map" class="col-sm-12 custom map" style="min-width: 100%; min-height: 450px; width: 100%; height: 100%;"></div>
+        </div>
+
+    </div> <!-- Panel body end -->
+</div><!-- Panel end -->
+
+<!--- javascript -->
 <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script type="text/javascript">
     var locations = [
