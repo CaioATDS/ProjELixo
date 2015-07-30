@@ -14,7 +14,8 @@ class ItensModel extends Model
                             'item_userid',
                           ];
 
-    static function count($ItemUserId, $status = null) // contar itens na lixeira ou itens ja confirmados na lixeira
+// contar itens na lixeira ou itens ja confirmados na lixeira
+    static function count($ItemUserId, $status = null)
     {
         return self::
                     where('item_userid', $ItemUserId)
@@ -30,7 +31,8 @@ class ItensModel extends Model
                     ->get();
     }
 
-    static function userrecicleds($userid) // selecionar itens que já foram reciclados pelo usuário
+// selecionar itens que já foram reciclados pelo usuário
+    static function userrecicleds($userid)
     {
         return self::
                     where('item_userid',$userid)
@@ -38,7 +40,8 @@ class ItensModel extends Model
                         ->paginate(10);
     }
 
-    static function userQuantidade($userid, $modelid, $status = null) // Quantidade de itenns na lixeira
+// Quantidade de itenns na lixeira
+    static function userQuantidade($userid, $modelid, $status = null)
     {
         return self::
                     where('modelos_id', $modelid)
@@ -47,7 +50,8 @@ class ItensModel extends Model
                     ->value('item_quantidade');
     }
 
-    static function userItemUpdate($userid, $modelid, $quantidade) // atualiza a quantidade de itens na lixeira
+// atualiza a quantidade de itens na lixeira
+    static function userItemUpdate($userid, $modelid, $quantidade)
     {
         return self::
                     where('modelos_id', $modelid)
@@ -56,7 +60,8 @@ class ItensModel extends Model
                     ->update(['item_quantidade' => $quantidade]);
     }
 
-    static function itemAsColected($modelid, $ItemUserid) // atualiza a quantidade de itens na lixeira
+// atualiza a quantidade de itens na lixeira
+    static function itemAsColected($modelid, $ItemUserid)
     {
         return self::
                     where('modelos_id', $modelid)
@@ -65,7 +70,8 @@ class ItensModel extends Model
                         ->update(['item_colected' => 1]);
     }
 
-    static function userItemRecicle($userid, $modelid, $quantidade) // confirma itens da lixeira
+    // confirma itens da lixeira
+    static function userItemRecicle($userid, $modelid, $quantidade)
     {
         return self::
                     where('modelos_id', $modelid)
@@ -74,7 +80,8 @@ class ItensModel extends Model
                         ->update(['item_quantidade' => $quantidade, 'item_status' => 1, ]);
     }
 
-    static function userItemDelete($userid, $modelid) // deleta itens da lixeira
+    // deleta itens da lixeira
+    static function userItemDelete($userid, $modelid)
     {
         return self::
                     where('modelos_id', $modelid)
@@ -83,7 +90,8 @@ class ItensModel extends Model
                         ->delete();
     }
 
-    static function itemNotCollected() // listar itens para serem coletados
+// listar itens para serem coletados
+    static function itemNotCollected()
     {
         return self::
                     where('item_status', 1)
@@ -92,7 +100,8 @@ class ItensModel extends Model
                         ->get()->toArray();
     }
 
-    static function itemCollected() // listar itens para serem coletados
+// listar itens para serem coletados
+    static function itemCollected()
     {
         return self::
                     where('item_colected', 1 )

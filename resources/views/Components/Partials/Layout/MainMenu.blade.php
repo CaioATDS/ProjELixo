@@ -44,7 +44,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             @if( ! Illuminate\Support\Facades\Auth::check())
-
                             <li><a href="{{asset('auth/login')}}">      Entrar      </a></li>
                             <li><a href="{{asset('auth/register')}}">   Registrar   </a></li>
                             @else
