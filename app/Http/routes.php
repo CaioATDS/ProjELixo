@@ -22,7 +22,7 @@ use App\Http\Controllers\Users\UsersController;
 // apenas logados
 Route::group(['prefix' => '', 'middleware' => 'auth', 'roles:Usuário', ], function(){
 
-    Route::get('/Perfil',       [ 'as' => 'profile', ProfileController::index(),    ]);
+    Route::get('/Perfil/{id?}',       [ 'as' => 'profile', ProfileController::index(),    ]);
 
 });
 
@@ -66,9 +66,9 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'roles:Aluno',], ], 
 
 Route::group(['prefix' => 'itens', 'middleware' => 'auth', 'roles:Usuário', ], function(){
 
-    Route::post('/selecionar',  ItensController::selecionar()   );
-    Route::post('/Reciclar',    ItensController::reciclar()     );
-    Route::get('/lixeira',      ItensController::lixeira()      );
-    Route::get('/reciclados',   ItensController::reciclados()   );
+    Route::post('/selecionar',      ItensController::selecionar()   );
+    Route::post('/Reciclar',        ItensController::reciclar()     );
+    Route::get('/lixeira',          ItensController::lixeira()      );
+    Route::get('/reciclados/{id?}', ItensController::reciclados()   );
 
 });

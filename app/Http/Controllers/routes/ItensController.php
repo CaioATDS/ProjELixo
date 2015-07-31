@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\routes;
 
+use App\Http\Controllers\Auth\RolesController;
 use App\Models\ItensModel;
 use App\Models\ModelosModel;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -72,13 +74,32 @@ class ItensController extends Controller
 
     public static function reciclados()
     {
-        return function(){
+        return function($UserID = null){
 
-            $userid = Auth::user()->id;
+            if( is_null($UserID) || $UserID == Auth::user()->id )
+            {
+                $userid = Auth::user();
+            } else
+            {
+                if(is_null(RolesController::validar('Aluno')))
+                {
+                    return redirect('/')->with('error', 'Você não têm permissão para acessar aquela página!');
+                } else {
+                    try
+                    {
+                        $userid = User::where('id', $UserID)->firstOrFail();
+                    } catch (Exception $e)
+                    {
+                        return redirect('/')->with('error', 'Usário não foi encontrado');
+                    }
+
+                }
+
+            }
 
             return view('Pages.Recicleds', [
-                'Lixeiras'  => ItensModel::userrecicleds($userid),
-                'UserID'   => $userid
+                'Lixeiras'  => ItensModel::userrecicleds($userid->id),
+                'UserID'   => $userid->id
             ]);
         };
     }

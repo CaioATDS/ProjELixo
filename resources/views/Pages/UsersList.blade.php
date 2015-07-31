@@ -7,6 +7,8 @@
         </div>
         <div class="panel-body">
 
+            @include('Errors.Geral')
+
             <table class="table table-bordered">
                 <thead>
 
