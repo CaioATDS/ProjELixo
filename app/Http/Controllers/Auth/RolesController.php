@@ -17,7 +17,7 @@ class RolesController extends Controller
        // retorna o id da classe passada na função ou middlewear da rota.
        $role       = RolesModel::getId($roles)->id;
 
-       // se a classe do usuario for 'maior ou igual' a classe exigida pelo retorna 'true'
+       // se a classe do usuario for 'maior ou igual' a classe exigida retorna 'true'
        if ($role <= $UserRole) return true;
     }
 

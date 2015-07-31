@@ -12,18 +12,29 @@
 
                 <a class="navbar-brand" href="{{asset('/')}}">e-Lixo</a>
 
-                <form class="navbar-form pull-right" action="{{asset('itens/lixeira')}}">
-                    <button type="submit" class="btn btn-default btn-left">
-                          <i class="fa fa-trash"></i>
-                          <i class="fa fa-recycle"></i>
-                    </button>
-                    <sup style="position: absolute; color: #f20d0d; margin-top: 14px; right: 10px;">
-                        @if(Illuminate\Support\Facades\Auth::check())
+                @if(Illuminate\Support\Facades\Auth::check())
+                    <form class="navbar-form pull-right" action="{{asset('itens/lixeira')}}">
+                        <button type="submit" class="btn btn-default btn-left">
+                              <i class="fa fa-trash"></i>
+                              <i class="fa fa-recycle"></i>
+                        </button>
+                        <sup style="position: absolute; color: #f20d0d; margin-top: 14px; right: 10px;">
                             <strong>{{ \App\Models\ItensModel::count(Illuminate\Support\Facades\Auth::user()->id) }}</strong>
-                        @endif
-                    </sup>
-                </form>
-
+                        </sup>
+                    </form>
+                @else
+                    <form class="navbar-form pull-right" action="{{asset('itens/lixeira')}}">
+                        <div class="btn-group btn-left">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                entrar
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="{{asset('auth/login')}}">      Entrar      </a></li>
+                                <li><a href="{{asset('auth/register')}}">   Registrar   </a></li>
+                            </ul>
+                        </div>
+                    </form>
+                @endif
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,36 +42,32 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{asset('/Parceiros')}}">  Parceiros        </a></li>
                     <li><a href="{{asset('/Projeto')}}">    Projeto          </a></li>
-                    <li><a href="{{asset('/Mapa')}}">       Mapa e-Lixo      </a></li>
+                    <li><a href="{{asset('/Mapa')}}">       Mapa            </a></li>
                     <li><a href="{{asset('/Pontos')}}">     Pontos de Coleta </a></li>
                 </ul>
 
-                <ul class="nav navbar-nav space-right navbar-right">
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                            <span class="glyphicon glyphicon-user"></span>
-                            {{ Illuminate\Support\Facades\Auth::check() ? Illuminate\Support\Facades\Auth::user()->name : 'entrar'}}
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            @if( ! Illuminate\Support\Facades\Auth::check())
-                                <li><a href="{{asset('auth/login')}}">      Entrar      </a></li>
-                                <li><a href="{{asset('auth/register')}}">   Registrar   </a></li>
-                            @else
-                            <li><a href="{{asset('/Perfil')}}">          Perfil     </a></li>
-                                @if( \App\Http\Controllers\Auth\RolesController::validar('Aluno'))
-                                    <li class="divider"></li>
-                                    <li><a href="{{asset('Admin/Coleta')}}">     Coleta     </a></li>
-                                    <li><a href="{{asset('Admin/Coletados')}}">  Coletados  </a></li>
-                                    <li class="divider"></li>
-                                @endif
-                            <li><a href="{{asset('/auth/logout')}}">     Sair       </a></li>
-                            @endif
-                            <li></li>
-                        </ul>
-                    </li>
-                </ul>
-
+                @if( Illuminate\Support\Facades\Auth::check())
+                    <ul class="nav navbar-nav space-right navbar-right">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <span class="glyphicon glyphicon-user"></span>
+                                {{ Illuminate\Support\Facades\Auth::user()->name }}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{asset('/Perfil')}}">          Perfil     </a></li>
+                                    @if( \App\Http\Controllers\Auth\RolesController::validar('Aluno'))
+                                        <li class="divider"></li>
+                                        <li><a href="{{asset('Admin/Coleta')}}">     Coleta     </a></li>
+                                        <li><a href="{{asset('Admin/Coletados')}}">  Coletados  </a></li>
+                                        <li><a href="{{asset('Admin/Usuarios')}}">   Usuários  </a></li>
+                                        <li class="divider"></li>
+                                    @endif
+                                <li><a href="{{asset('/auth/logout')}}">     Sair       </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                @endif
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>

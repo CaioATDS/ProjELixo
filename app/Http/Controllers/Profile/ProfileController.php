@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Profile;
 
+use App\Models\RolesModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class ProfileController extends Controller
                                 'UserName'      => Auth::user()->name,
                                 'UserLastname'  => Auth::user()->lastname,
                                 'UserEmail'     => Auth::user()->email,
+                                'UserRole'      => RolesModel::getName(Auth::user()->user_roles),
            ]);
        };
     }

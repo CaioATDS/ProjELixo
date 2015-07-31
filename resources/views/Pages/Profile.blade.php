@@ -16,6 +16,10 @@
                 <td class="col-xs-10">{{$UserLastname}}</td>
             </tr>
             <tr>
+                <td class="col-xs-2 text-right">Classe: </td>
+                <td class="col-xs-10">{{$UserRole}}</td>
+            </tr>
+            <tr>
                 <td class="col-xs-2 text-right">Email: </td>
                 <td class="col-xs-10">{{$UserEmail}}</td>
             </tr>
