@@ -28,7 +28,7 @@ class ProfileController extends Controller
                }
                else
                {
-                   if(is_null(RolesController::validar('Admin')))
+                   if(is_null(RolesController::validar('Aluno')))
                    {
                        return redirect('/')->with('error', 'Você não têm permissão para acessar aquela página!');
                    } else {
