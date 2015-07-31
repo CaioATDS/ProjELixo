@@ -17,6 +17,7 @@ use App\Http\Controllers\routes\StaticasController;
 use App\Http\Controllers\routes\SubCategoriasController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Administrator\ColetaController;
+use App\Http\Controllers\Users\SignupController;
 use App\Http\Controllers\Users\UsersController;
 
 // apenas logados
@@ -38,8 +39,16 @@ Route::group(['prefix' => ''], function(){
 });
 
 // Authentication routes...
+Route::group(['prefix' => 'User'], function(){
+    Route::get('/Cadastro',     SignupController::index()   );
+    Route::post('/Cadastro',    SignupController::post()    );
+    Route::get('/Entrar', function(){
+        return 'login page';
+    });
+});
+
 Route::controller('auth', 'Auth\AuthController');
-Route::controller('password', 'Auth\PasswordController');
+//Route::controller('password', 'Auth\PasswordController');
 
 Route::group(['prefix' => 'Subcategoria', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function() {
 

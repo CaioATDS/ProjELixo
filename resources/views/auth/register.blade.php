@@ -1,13 +1,13 @@
 <!-- resources/views/auth/register.blade.php -->
 @include('Components.Partials.Layout.HeaderPage')
-
+@include('Errors.Geral')
 <div class="panel panel-default">
     <div class="panel-heading"><strong>Registrar:</strong>
         <span><small>Crie sua nova conta:</small></span>
     </div>
     <div class="panel-body">
 
-        <form method="POST" action="{{ asset('/auth/register') }}">
+        <form method="POST" >
             {!! csrf_field() !!}
             <div class="row login-form radius-5 padding-all-10">
 
