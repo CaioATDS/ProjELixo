@@ -1,5 +1,5 @@
 @include('Components.Partials.Layout.HeaderPage')
-<!-- resources/views/auth/login.blade.php -->
+@include('Errors.Geral')
 
 <div class="panel panel-default">
     <div class="panel-heading"><strong>Entrar:</strong>
@@ -7,7 +7,7 @@
     </div>
     <div class="panel-body">
 
-        <form method="POST" action="{{asset('/auth/login')}}">
+        <form method="POST" action="{{asset('/User/Entrar')}}">
             {!! csrf_field() !!}
 
             <div class="row login-form radius-5 padding-all-10">

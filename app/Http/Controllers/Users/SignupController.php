@@ -61,10 +61,9 @@ class SignupController extends Controller
 
             // tentativa de logar o novo usuario
             if( Auth::attempt((['email' => $user->email, 'password' => Input::get('password')])) )
-            {
                 return redirect('/')->with('status', 'Cadastro realizado com sucesso');
-            }
-            else return redirect('/User/Entrar')->with('status', 'Cadastro realizado com sucesso');
+            else
+                return redirect('/User/Entrar')->with('status', 'Cadastro realizado com sucesso. Você já pode entrar usando seus dados.');
 
         };
     }

@@ -17,6 +17,8 @@ use App\Http\Controllers\routes\StaticasController;
 use App\Http\Controllers\routes\SubCategoriasController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Administrator\ColetaController;
+use App\Http\Controllers\Users\LoginController;
+use App\Http\Controllers\Users\LogoutController;
 use App\Http\Controllers\Users\SignupController;
 use App\Http\Controllers\Users\UsersController;
 
@@ -40,14 +42,16 @@ Route::group(['prefix' => ''], function(){
 
 // Authentication routes...
 Route::group(['prefix' => 'User'], function(){
-    Route::get('/Cadastro',     SignupController::index()   );
-    Route::post('/Cadastro',    SignupController::post()    );
-    Route::get('/Entrar', function(){
-        return 'login page';
-    });
+
+    Route::get('/Cadastro',    [ 'as' => 'signup',      SignupController::index(),   ]);
+    Route::post('/Cadastro',   [ 'as' => 'signuping',   SignupController::post(),    ]);
+    Route::get('/Entrar',      [ 'as' => 'login',       LoginController::index(),    ]);
+    Route::post('/Entrar',     [ 'as' => 'logining',    LoginController::post(),    ]);
+    Route::get('/Sair',        [ 'as' => 'logout',      LogoutController::logout(),  ]);
+
 });
 
-Route::controller('auth', 'Auth\AuthController');
+//Route::controller('auth', 'Auth\AuthController');
 //Route::controller('password', 'Auth\PasswordController');
 
 Route::group(['prefix' => 'Subcategoria', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function() {

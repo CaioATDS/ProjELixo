@@ -29,8 +29,8 @@
                                 entrar
                             </button>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="{{asset('auth/login')}}">      Entrar      </a></li>
-                                <li><a href="{{asset('auth/register')}}">   Registrar   </a></li>
+                                <li><a href="{{asset('User/Entrar')}}">      Entrar      </a></li>
+                                <li><a href="{{asset('User/Cadastro')}}">    Registrar   </a></li>
                             </ul>
                         </div>
                     </form>
@@ -63,7 +63,7 @@
                                         <li><a href="{{asset('Admin/Usuarios')}}">   Usuários  </a></li>
                                         <li class="divider"></li>
                                     @endif
-                                <li><a href="{{asset('/auth/logout')}}">     Sair       </a></li>
+                                <li><a href="{{asset('/User/Sair')}}">     Sair       </a></li>
                             </ul>
                         </li>
                     </ul>
