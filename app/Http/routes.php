@@ -20,7 +20,7 @@ use App\Http\Controllers\Administrator\ColetaController;
 use App\Http\Controllers\Users\UsersController;
 
 // apenas logados
-Route::group(['prefix' => '', 'middleware' => 'auth', 'roles:Usuário', ], function(){
+Route::group(['prefix' => '', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function(){
 
     Route::get('/Perfil/{id?}',       [ 'as' => 'profile', ProfileController::index(),    ]);
 
@@ -41,13 +41,13 @@ Route::group(['prefix' => ''], function(){
 Route::controller('auth', 'Auth\AuthController');
 Route::controller('password', 'Auth\PasswordController');
 
-Route::group(['prefix' => 'Subcategoria', 'middleware' => 'auth', 'roles:Usuário', ], function() {
+Route::group(['prefix' => 'Subcategoria', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function() {
 
-    Route::get('/{id}',         [ 'as' => 'subcat', SubCategoriasController::index(), ]);
+    Route::get('/{id}', [ 'as' => 'subcat', SubCategoriasController::index(), ]);
 
 });
 
-Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'roles:Aluno',], ], function(){
+Route::group(['prefix' => 'Admin', 'middleware' => [ 'auth', 'roles:Aluno', ], ], function(){
 
     Route::get('/Coleta',       [ 'as' => 'coleta',     ColetaController::index(),      ]);
     Route::get('/Coletados',    [ 'as' => 'coletados',  ColetaController::coletados(),  ]);
@@ -64,7 +64,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'roles:Aluno',], ], 
 
 });
 
-Route::group(['prefix' => 'itens', 'middleware' => 'auth', 'roles:Usuário', ], function(){
+Route::group(['prefix' => 'itens', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function(){
 
     Route::post('/selecionar',      ItensController::selecionar()   );
     Route::post('/Reciclar',        ItensController::reciclar()     );
