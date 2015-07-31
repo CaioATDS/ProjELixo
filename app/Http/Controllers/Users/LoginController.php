@@ -47,12 +47,12 @@ class LoginController extends Controller
                     throw new ModelNotFoundException(); //se o login falhar joga um erro.
                 }
 
-                return redirect('/')->with('status', 'Cadastro realizado com sucesso');
+                return redirect('/')->with('status', 'Login realizado com sucesso.');
 
             }
             catch(ModelNotFoundException $error)
             {
-                return Redirect::back()->WithErrors(['O email ou senha estão incorretos']);
+                return Redirect::back()->WithErrors(['O email ou senha estão incorretos.']);
             }
             catch(Exception $exception)
             {

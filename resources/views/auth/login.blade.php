@@ -29,7 +29,7 @@
                 <div class="form-group padding-rl-10 col-md-12 btn-center">
                     <button type="submit" class="btn btn-success">Enviar</button>
                 </div>
-                <small>Ainda não é registrado? Clique aqui para <a href="{{asset('auth/register')}}">Criar Conta</a>.</small>
+                <small>Ainda não é registrado? Clique aqui para <a href="{{asset('User/Cadastro')}}">Criar Conta</a>.</small>
             </div>
 
         </form>

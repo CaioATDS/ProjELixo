@@ -1,4 +1,17 @@
 <?php
+/*
+ *
+ * Rodrigo Brandao
+ * ro.brandao@outlook.com
+ * 18-99701-9800
+ * www.bitmaniaco.com
+ *
+ * 1º ano de Sistema de Informaçoes
+ * junho - 2015
+ * Projeto e-Lixo
+ * Faculdade Toledo de Presidente Prudente
+ *
+ */
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +43,7 @@ Route::group(['prefix' => '', 'middleware' => [ 'auth', 'roles:Usuário', ], ], 
 });
 
 // rotas publicas paginas estáticas
-Route::group(['prefix' => ''], function(){
+Route::group(['prefix' => '',], function(){
 
     Route::get('/Parceiros',    [ 'as' => 'parceiros',  StaticasController::parceiros(), ]);
     Route::get('/Projeto',      [ 'as' => 'projeto',    StaticasController::projeto(),   ]);
@@ -41,18 +54,15 @@ Route::group(['prefix' => ''], function(){
 });
 
 // Authentication routes...
-Route::group(['prefix' => 'User'], function(){
+Route::get('User/Sair',        [ 'as' => 'logout', 'middleware' => 'auth',  LogoutController::logout(),  ]);
+Route::group(['prefix' => 'User', 'middleware' => 'guest', ], function(){
 
     Route::get('/Cadastro',    [ 'as' => 'signup',      SignupController::index(),   ]);
     Route::post('/Cadastro',   [ 'as' => 'signuping',   SignupController::post(),    ]);
     Route::get('/Entrar',      [ 'as' => 'login',       LoginController::index(),    ]);
     Route::post('/Entrar',     [ 'as' => 'logining',    LoginController::post(),    ]);
-    Route::get('/Sair',        [ 'as' => 'logout',      LogoutController::logout(),  ]);
 
 });
-
-//Route::controller('auth', 'Auth\AuthController');
-//Route::controller('password', 'Auth\PasswordController');
 
 Route::group(['prefix' => 'Subcategoria', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function() {
 
@@ -69,19 +79,12 @@ Route::group(['prefix' => 'Admin', 'middleware' => [ 'auth', 'roles:Aluno', ], ]
 
 });
 
-Route::group(['prefix' => 'Admin', 'middleware' => ['auth', 'roles:Aluno',], ], function(){
-
-    Route::get('/Coleta',       ColetaController::index()       );
-    Route::get('/Coletados',    ColetaController::coletados()   );
-    Route::post('/Coletar',     ColetaController::store()       );
-
-});
-
 Route::group(['prefix' => 'itens', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function(){
 
-    Route::post('/selecionar',      ItensController::selecionar()   );
-    Route::post('/Reciclar',        ItensController::reciclar()     );
-    Route::get('/lixeira',          ItensController::lixeira()      );
-    Route::get('/reciclados/{id?}', ItensController::reciclados()   );
+    Route::post('/selecionar',      [ 'as' => 'selecionar', ItensController::selecionar(),  ]);
+    Route::post('/Reciclar',        [ 'as' => 'reciclar',   ItensController::reciclar(),    ]);
+    Route::get('/lixeira',          [ 'as' => 'lixeira',    ItensController::lixeira(),     ]);
+    Route::get('/reciclados/{id?}', [ 'as' => 'reclicados', ItensController::reciclados(),  ]);
 
 });
+
