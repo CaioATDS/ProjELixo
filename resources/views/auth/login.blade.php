@@ -2,8 +2,8 @@
 <!-- resources/views/auth/login.blade.php -->
 
 <div class="panel panel-default">
-    <div class="panel-heading"><strong>Registrar:</strong>
-        <span><small>Crie sua nova conta:</small></span>
+    <div class="panel-heading"><strong>Entrar:</strong>
+        <span><small>Digite seus dados para entrar:</small></span>
     </div>
     <div class="panel-body">
 
@@ -25,10 +25,11 @@
                 <div class="form-group">
                     <input type="checkbox" name="remember"> Continuar Logado
                 </div>
+
                 <div class="form-group padding-rl-10 col-md-12 btn-center">
                     <button type="submit" class="btn btn-success">Enviar</button>
                 </div>
-
+                <small>Ainda não é registrado? Clique aqui para <a href="{{asset('auth/register')}}">Criar Conta</a>.</small>
             </div>
 
         </form>
