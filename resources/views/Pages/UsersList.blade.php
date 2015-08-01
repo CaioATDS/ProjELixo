@@ -38,7 +38,7 @@
                             <td>{{ $User->email }}</td>
                         @endif
                         @if(\App\Http\Controllers\Auth\RolesController::validar('Admin'))
-                            <td class="text-center"><a href="{{ asset('/Perfil/Edit/'.$User->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td class="text-center"><a href="{{ asset('/Perfil/Editar/'.$User->id) }}" title="editar"><span class="glyphicon glyphicon-edit"></span></a></td>
                         @endif
                     </tr>
                 @endforeach
