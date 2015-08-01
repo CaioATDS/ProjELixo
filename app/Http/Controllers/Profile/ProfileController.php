@@ -132,10 +132,6 @@ class ProfileController extends Controller
                 if ($validar->fails())
                     return Redirect::back()->withErrors($validar)->withInput();
 
-                // verifica se o email ja esta cadastrado
-                if (User::hasemail($input['email']) && Auth::user()->email == $input['email'])
-                    return Redirect::back()->withErrors('email já cadastrado.')->withInput();
-
                 // seleciona o usuario na base dados
                 $user = User::find($input['id']);
 
@@ -143,14 +139,23 @@ class ProfileController extends Controller
                 if(is_null($user))
                     return Redirect::back()->withErrors('Usuário não foi encontrado.')->withInput();
 
-                    $user->name     = Input::get('name');
-                    $user->lastname = Input::get('lastname');
-                    $user->email    = Input::get('email');
-                    $user->save();
+                // se o email do usuário for diferente do email do imput
+                if($user->email != $input['email'])
+                {
+                    // verfique se o email não pertença a outro usuário
+                    if (User::hasemail($input['email']))
+                        return Redirect::back()->withErrors('email já cadastrado.')->withInput();
+
+                }
+
+                $user->name     = $input['name'];
+                $user->lastname = $input['lastname'];
+                $user->email    = $input['email'];
+                $user->save();
 
             } catch (Exception $e)
             {
-                return Redirect::back()->withErrors('Algo saiu errado.' . $e)->withInput();
+                return Redirect::back()->withErrors('Algo saiu errado.')->withInput();
             }
             return redirect('/Perfil/'.$input['id'])->with('status', 'Perfil Atualizado com sucesso');
         };
