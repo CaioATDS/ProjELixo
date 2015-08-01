@@ -9,16 +9,7 @@
     <div class="panel-body">
 
         <div class="row row-centered">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+            @include('Errors.Geral')
             @foreach($Categorias as $Categoria)
 
                 <div class="col-md-3 col-xs-6 col-centered">

@@ -1,4 +1,5 @@
 @include('Components.Partials.Layout.HeaderPage')
+@include('Errors.Geral')
 
 <div class="panel panel-default">
 

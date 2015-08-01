@@ -42,14 +42,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $user ? true : false;
     }
     // validar campos do formulario
-    static function validar()
+    static function validar($edit = null)
     {
+        $required = is_null($edit) ? 'required|min:5' : 'min:5';
 
         $validar = Validator::make(Input::all(), [
             'name'                  => 'required|alpha',
             'email'                 => 'required|email',
-            'password'              => 'required|min:5',
-            'password_confirmation' => 'required|min:5',
+            'password'              => $required,
+            'password_confirmation' => $required,
         ]);
 
         return $validar;
@@ -61,7 +62,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
 
         $validar = Validator::make(Input::all(),[
-            'password'              => 'required|min5',
+            'password'              => 'required|min:5',
             'password_confirmation' => 'required|min:5',
         ]);
 

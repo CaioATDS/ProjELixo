@@ -35,10 +35,13 @@ use App\Http\Controllers\Users\LogoutController;
 use App\Http\Controllers\Users\SignupController;
 use App\Http\Controllers\Users\UsersController;
 
-// apenas logados
-Route::group(['prefix' => '', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function(){
+// perfil rota
+Route::group(['prefix' => 'Perfil', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function(){
 
-    Route::get('/Perfil/{id?}',       [ 'as' => 'profile', ProfileController::index(),    ]);
+    Route::get('Editar/{id?}',  [ 'as' => 'profile', ProfileController::edit(),     ]);
+    Route::post('Editar/{id?}', [ 'as' => 'profile', ProfileController::update(),   ]);
+    Route::post('/Senha{id?}',  [ 'as' => 'profile', ProfileController::senha(),    ]);
+    Route::get('/{id?}',        [ 'as' => 'profile', ProfileController::index(),    ]);
 
 });
 
