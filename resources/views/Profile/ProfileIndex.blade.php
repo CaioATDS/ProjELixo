@@ -32,7 +32,7 @@
                 <td class="col-xs-2 text-right">Na Lixeira: </td>
                 <td class="col-xs-10"><a href="{{asset('/itens/lixeira')}}">{{ \App\Models\ItensModel::count($UserId) }}</a></td>
             </tr>
-            @if(\App\Http\Controllers\Auth\RolesController::validar('Admin') || $$UserId == Illuminate\Support\Facades\Auth::user()->id )
+            @if(\App\Http\Controllers\Auth\RolesController::validar('Admin') || $UserId == Illuminate\Support\Facades\Auth::user()->id )
                 <td class="col-xs-2 text-right">Editar: </td>
                 <td class="col-xs-10"><a href="{{ asset('/Perfil/Editar/'.$UserId) }}" title="Editar"><span class="glyphicon glyphicon-edit"></span></a></td>
             @endif
