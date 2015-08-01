@@ -54,13 +54,14 @@ Route::group(['prefix' => '',], function(){
 });
 
 // Authentication routes...
+Route::controller('/password', 'Auth\PasswordController');
 Route::get('User/Sair',        [ 'as' => 'logout', 'middleware' => 'auth',  LogoutController::logout(),  ]);
 Route::group(['prefix' => 'User', 'middleware' => 'guest', ], function(){
 
     Route::get('/Cadastro',    [ 'as' => 'signup',      SignupController::index(),   ]);
     Route::post('/Cadastro',   [ 'as' => 'signuping',   SignupController::post(),    ]);
     Route::get('/Entrar',      [ 'as' => 'login',       LoginController::index(),    ]);
-    Route::post('/Entrar',     [ 'as' => 'logining',    LoginController::post(),    ]);
+    Route::post('/Entrar',     [ 'as' => 'logining',    LoginController::post(),     ]);
 
 });
 

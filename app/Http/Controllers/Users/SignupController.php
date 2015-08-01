@@ -9,7 +9,6 @@ use Hash;
 use Illuminate\Support\Facades\Auth;
 use Input;
 use Redirect;
-use Validator;
 
 class SignupController extends Controller
 {
@@ -30,22 +29,15 @@ class SignupController extends Controller
         {
             try {
                 //faz a validaçao dos campos de usuario
-                $Validator = Validator::make(Input::all(), [
-                    'name' => 'required|alpha',
-                    'email' => 'required|email',
-                    'password' => 'required|min:5',
-                    'password_confirmation' => 'required|min:5',
-                ]);
+                $validar = User::validar(Input::all());
 
                 //se avalidaçao falhar retorne com erros
-                if ($Validator->fails()) {
-                    return Redirect::back()->withErrors($Validator)->withInput();
-                }
+                if ($validar->fails())
+                    return Redirect::back()->withErrors($validar)->withInput();
 
                 // verifica se o email ja esta cadastrado
-                if (User::hasemail(Input::get('email'))) {
+                if (User::hasemail(Input::get('email')))
                     return Redirect::back()->withErrors('email já cadastrado.')->withInput();
-                }
 
                 $input = Input::all();
                 $input['password'] = Hash::make($input['password']); // encripta o password

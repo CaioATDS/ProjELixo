@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Input;
+use Redirect;
+use Validator;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
@@ -37,5 +40,32 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         $user = self::where('email', $email)->first();
         return $user ? true : false;
+    }
+    // validar campos do formulario
+    static function validar()
+    {
+
+        $validar = Validator::make(Input::all(), [
+            'name'                  => 'required|alpha',
+            'email'                 => 'required|email',
+            'password'              => 'required|min:5',
+            'password_confirmation' => 'required|min:5',
+        ]);
+
+        return $validar;
+
+    }
+
+    //validar campos trocar senha
+    static function validarsenha()
+    {
+
+        $validar = Validator::make(Input::all(),[
+            'password'              => 'required|min5',
+            'password_confirmation' => 'required|min:5',
+        ]);
+
+        return $validar;
+
     }
 }

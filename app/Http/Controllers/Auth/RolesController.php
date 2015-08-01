@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RolesController extends Controller
 {
-
+    // valida a classe do usuário, passe a string conforme a classe minima que poderá acessar o recurso.
     public static function validar($roles)
     {
        // determina a classe do usuario
