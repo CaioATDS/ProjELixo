@@ -149,13 +149,6 @@ class ProfileController extends Controller
 
                 }
 
-                Mail::raw('Text to e-mail', function($message)
-                {
-                    $message->from('knoonrx@gmail.com', 'Mail teste');
-
-                    $message->to('k-noon@hotmail.com');
-                });
-
                 $user->name     = $input['name'];
                 $user->lastname = $input['lastname'];
                 $user->email    = $input['email'];
@@ -165,7 +158,7 @@ class ProfileController extends Controller
 
             } catch (Exception $e)
             {
-                return Redirect::back()->withErrors('Algo saiu errado.' . $e)->withInput();
+                return Redirect::back()->withErrors('Algo saiu errado.')->withInput();
             }
             return redirect('/Perfil/'.$input['id'])->with('status', 'Perfil Atualizado com sucesso');
         };
