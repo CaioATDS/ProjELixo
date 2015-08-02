@@ -154,7 +154,21 @@ class ProfileController extends Controller
                 $user->email    = $input['email'];
                 $user->save();
 
+                $user->mensagem = 'Alguns dados de sua conta foram modificados.';
 
+                $data = [
+                    'name'      => $user->name,
+                    'lastname'  => $user->lastname ,
+                    'email'     => $user->email,
+                    'mensagem'  => $user->mensagem,
+                ];
+
+                Mail::send('email.bemvindo', $data, function($message) use ($user, $data)
+                {
+                    $message->subject('Sua conta foi modificada!'); // assunto
+                    $message->from('knoonrx@gmail.com', 'e-Lixo'); // remetente
+                    $message->to($user->email, $user->name . ' ' . $user->lastname); // destinatario
+                });
 
             } catch (Exception $e)
             {
