@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Auth\RolesController;
+use App\Http\Controllers\Services\EmailController;
 use App\Models\RolesModel;
 use App\User;
 use Exception;
@@ -10,7 +11,6 @@ use Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use Input;
 use Redirect;
 
@@ -114,6 +114,9 @@ class ProfileController extends Controller
     static function update()
     {
 
+        /**
+         * @return $this
+         */
         return function()
         {
             try
@@ -149,30 +152,25 @@ class ProfileController extends Controller
 
                 }
 
+
+
                 $user->name     = $input['name'];
                 $user->lastname = $input['lastname'];
                 $user->email    = $input['email'];
                 $user->save();
 
-                $user->mensagem = 'Alguns dados de sua conta foram modificados.';
-
-                $data = [
-                    'name'      => $user->name,
-                    'lastname'  => $user->lastname ,
-                    'email'     => $user->email,
-                    'mensagem'  => $user->mensagem,
-                ];
-
-                Mail::send('email.bemvindo', $data, function($message) use ($user, $data)
-                {
-                    $message->subject('Sua conta foi modificada!'); // assunto
-                    $message->from('knoonrx@gmail.com', 'e-Lixo'); // remetente
-                    $message->to($user->email, $user->name . ' ' . $user->lastname); // destinatario
-                });
+                $enviar = new EmailController();
+                $enviar->enviar(
+                            $input['name'],
+                            $input['lastname'],
+                            $input['email'],
+                            'Alguns dados de sua conta foram modificados.',
+                            'Sua conta foi modificada!'
+                );
 
             } catch (Exception $e)
             {
-                return Redirect::back()->withErrors('Algo saiu errado.')->withInput();
+                return Redirect::back()->withErrors('Algo saiu errado.' . $e)->withInput();
             }
             return redirect('/Perfil/'.$input['id'])->with('status', 'Perfil Atualizado com sucesso');
         };
