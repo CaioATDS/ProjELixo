@@ -27,7 +27,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'lastname', 'email', 'password', 'user_roles', ];
+    protected $fillable = [ 'name', 'lastname', 'email', 'password', 'user_roles', 'enable', ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -38,8 +38,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     static function hasemail($email)
     {
-        $user = self::where('email', $email)->first();
-        return $user ? true : false;
+        $user = (bool) self::where('email', $email)->first();
+        return $user;
     }
     // validar campos do formulario
     static function validar($edit = null)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
@@ -42,9 +43,9 @@ class LoginController extends Controller
             try
             {
                 //tenta logar o usuario
-                if( ! Auth::attempt(['email' => Input::Get('email'), 'password' => Input::Get('password')]) )
+                if( ! Auth::attempt(['email' => Input::Get('email'), 'password' => Input::Get('password'), 'enable' => 1, ]) )
                 {
-                    throw new ModelNotFoundException(); //se o login falhar joga um erro.
+                    throw new ModelNotFoundException(); // se o login falhar joga um erro.
                 }
 
                 return redirect('/')->with('status', 'Login realizado com sucesso.');
@@ -52,7 +53,7 @@ class LoginController extends Controller
             }
             catch(ModelNotFoundException $error)
             {
-                return Redirect::back()->WithErrors(['O email ou senha estão incorretos.']);
+                return Redirect::back()->WithErrors('O email e senha estão incorretos ou essa conta foi desativada.');
             }
             catch(Exception $exception)
             {
