@@ -149,16 +149,14 @@ class ProfileController extends Controller
                     // verfique se o email não pertença a outro usuário
                     if (User::hasemail($input['email']))
                         return Redirect::back()->withErrors('email já cadastrado.')->withInput();
-
                 }
-
-
 
                 $user->name     = $input['name'];
                 $user->lastname = $input['lastname'];
                 $user->email    = $input['email'];
-                $user->save();
+                $user->save(); // salva as mudanças no banco de dados
 
+                //envia email informando que houveram mudanças no perfil do usuário.
                 $enviar = new EmailController();
                 $enviar->enviar(
                             $input['name'],
@@ -170,7 +168,7 @@ class ProfileController extends Controller
 
             } catch (Exception $e)
             {
-                return Redirect::back()->withErrors('Algo saiu errado.' . $e)->withInput();
+                return Redirect::back()->withErrors('Algo saiu errado.')->withInput();
             }
             return redirect('/Perfil/'.$input['id'])->with('status', 'Perfil Atualizado com sucesso');
         };
