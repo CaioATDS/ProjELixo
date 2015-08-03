@@ -9,11 +9,12 @@ class EmailController
 {
     private $name,
             $lastname,
-            $email,
+            $email;
+    public
             $mensagem,
             $assunto;
 
-    function enviar( $name, $lastname, $email, $mensagem, $assunto )
+    function enviar( $name, $lastname, $email, $assunto, $mensagem )
     {
 
         $this->name     = $name;
@@ -29,7 +30,6 @@ class EmailController
             'mensagem'  => $this->mensagem,
             'assunto'   => $this->assunto,
         ];
-
 
         Mail::send('email.email', $data, function($message) use ($data)
         {

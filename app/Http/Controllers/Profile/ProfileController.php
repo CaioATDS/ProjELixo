@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Http\Controllers\Auth\RolesController;
 use App\Http\Controllers\Services\EmailController;
 use App\Models\RolesModel;
+use App\Providers\ConstantesProvider;
 use App\User;
 use Exception;
 use Hash;
@@ -156,15 +157,11 @@ class ProfileController extends Controller
                 $user->email    = $input['email'];
                 $user->save(); // salva as mudanças no banco de dados
 
-                //envia email informando que houveram mudanças no perfil do usuário.
-                $enviar = new EmailController();
-                $enviar->enviar(
-                            $input['name'],
-                            $input['lastname'],
-                            $input['email'],
-                            'Alguns dados de sua conta foram modificados.',
-                            'Sua conta foi modificada!'
-                );
+                $enviar           = new EmailController();//envia email
+                $enviar->assunto  = 'Sua conta foi modificada!';
+                $enviar->mensagem = 'Alguns dados de sua conta foram modificados.';
+
+                $enviar->enviar($input['name'],$input['lastname'],$input['email'],$enviar->assunto,$enviar->mensagem);
 
             } catch (Exception $e)
             {

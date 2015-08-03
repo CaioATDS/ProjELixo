@@ -831,7 +831,11 @@
                                                         <span style="color:#0094b5;text-decoration:none;font-weight:bold;" href="">{{ $assunto }}</span>
                                                     </p>
                                                     <p style="font-size:16px;color:#5b5a5a;">
-                                                        {{ $mensagem }}
+                                                        <?php
+                                                            ob_start();
+                                                            echo $mensagem ;
+                                                            echo ob_get_clean();
+                                                        ?>
                                                     </p>
                                                     <!--<img width="270" height="200" src="http://toledoprudente.edu.br/imagens/224-destaque_elixo.png">-->
 

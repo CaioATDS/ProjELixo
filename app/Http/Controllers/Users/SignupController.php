@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Services\EmailController;
+use App\Providers\ConstantesProvider;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Exception;
 use Hash;
 use Illuminate\Support\Facades\Auth;
 use Input;
@@ -39,12 +42,18 @@ class SignupController extends Controller
                 if (User::hasemail(Input::get('email')))
                     return Redirect::back()->withErrors('email já cadastrado.')->withInput();
 
-                $input = Input::all();
-                $input['password'] = Hash::make($input['password']); // encripta o password
-                $user = new User();  // cria o objeto user
+                $input              = Input::all();
+                $SenhaDecriptada    = $input['password'];
+                $input['password']  = Hash::make($input['password']); // encripta o password
+                $user               = new User();  // cria o objeto user
                 $user->fill($input); // preenche as propriedades do objeto user de acordo com o imput passado pelo form
+                $user->save(); // salva o novo usuario no banco de dados
 
-                $user->save();
+                $email           = new EmailController(); // enviar email
+                $email->assunto  = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
+                $mensagem = view('email.bemvindo', [ 'email' => $user->email, 'password'  => $SenhaDecriptada, ])->render();
+                $email->enviar($user->name, $user->lastname, $user->email, $email->assunto, $mensagem);
+
                 }
                 catch (Exception $e)
                 {
