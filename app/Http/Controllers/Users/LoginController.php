@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Input;
 use Redirect;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Validator;
 
 class LoginController extends Controller
@@ -17,9 +18,10 @@ class LoginController extends Controller
 
     static function index()
     {
-        return function()
+        return function(LaravelFacebookSdk $fb)
         {
-            return view('auth.login');
+            $login_url = $fb->getLoginUrl(['email']);
+            return view('auth.login',['login_url' => $login_url,]);
         };
     }
 

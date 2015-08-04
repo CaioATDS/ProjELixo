@@ -26,9 +26,14 @@
                     <input type="checkbox" name="remember"> Continuar Logado
                 </div>
 
-                <div class="form-group padding-rl-10 col-md-12 btn-center">
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                <div class="form-group padding-rl-10 col-md-12 btn-center text-center">
+                    <button style="width: 190px" type="submit" class="btn btn-success"><i class="fa fa-envelope"></i> &nbsp;Entre Com Seu E-mail</button>
                 </div>
+
+                <div class="form-group padding-rl-10 col-md-12 btn-center text-center">
+                    <a style="width: 190px" class="btn btn-primary" href="{{$login_url}}" role="button"><i class="fa fa-facebook-square"></i> &nbsp;Entre Com Facebook</a>
+                </div>
+
                 <small>Ainda não é registrado? Clique aqui para <a href="{{asset('User/Cadastro')}}">Criar Conta</a>.</small>
             </div>
 
