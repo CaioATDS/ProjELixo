@@ -62,7 +62,7 @@ class FacebookCallbackController extends Controller
 
             // Get basic info on the user from Facebook.
             try {
-                $response = $fb->get('/me?fields=id,name,email');
+                $response = $fb->get('/me?fields=id,first_name,last_name,email,picture');
             } catch (FacebookSDKException $e) {
                 dd($e->getMessage());
             }

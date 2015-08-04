@@ -13,6 +13,7 @@
                 <thead>
 
                 <tr>
+                    <th style="width: 55px;">Avatar</th>
                     <th>Nome.</th>
                     <th>Sobrenome</th>
                     <th>Cadastrado</th>
@@ -30,6 +31,7 @@
 
                 @foreach( $Users as $User)
                     <tr>
+                        <td class="text-center">@if($User->picture) <img src="{{ $User->picture }}" alt="Avatar">@else <span style="font-size: 30px;" class="glyphicon glyphicon-user"></span> @endif</td>
                         <td><a href="{{ asset('/Perfil/'.$User->id) }}">{{ $User->name }}</a> </td>
                         <td>{{ $User->lastname }}</td>
                         <td>{{ date("d-m-Y", strtotime($User->created_at)) }}</td>

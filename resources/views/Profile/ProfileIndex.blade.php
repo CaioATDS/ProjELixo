@@ -3,11 +3,15 @@
 
 <div class="panel panel-default">
 
-    <div class="panel-heading">{{$UserName}} {{$UserLastname}}</div>
+    <div class="panel-heading"> {{$UserName}} {{$UserLastname}}</div>
     <div class="panel-body">
 
         <table class="table table-bordered table-hover">
             <tbody>
+            <tr>
+                <td class="col-xs-2 text-right">Avatar: </td>
+                <td class="col-xs-10">@if($Picture) <img src="{{ $Picture }}" alt="Avatar">@else <span style="font-size: 30px;" class="glyphicon glyphicon-user"></span> @endif</td>
+            </tr>
             <tr>
                 <td class="col-xs-2 text-right">Nome: </td>
                 <td class="col-xs-10">{{$UserName}}</td>

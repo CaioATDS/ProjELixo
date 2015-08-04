@@ -27,19 +27,28 @@ trait SyncableGraphNodeTrait
     {
         // @todo this will be GraphNode soon
         if ($data instanceof GraphObject || $data instanceof GraphNode) {
-            $data = $data->asArray();
+            $array = $data->asArray();
+            $data  = [
+                'id'        => $array['id'],
+                'name'      => $array['first_name'],
+                'lastname'  => $array['last_name'],
+                'email'     => $array['email'],
+                'picture'   => $array['picture'],
+            ];
         }
 
         if (! isset($data['id'])) {
             throw new \InvalidArgumentException('Graph node id is missing');
         }
 
-        $profile = User::where('email', $data['email'])->first();
+        $profile = User::where('email', $data['email'])->whereNull('facebook_user_id')->first();
         if($profile)
         {
 
             $graph_node = $profile;
             $graph_node->facebook_user_id = $data['id'];
+            $graph_node->picture          = $data['picture']['url'];
+            $graph_node->fill($data);
             $graph_node->save();
 
         }
@@ -51,6 +60,7 @@ trait SyncableGraphNodeTrait
 
             static::mapGraphNodeFieldNamesToDatabaseColumnNames($graph_node, $data);
 
+            $graph_node->picture=$data['picture']['url'];
             $graph_node->save();
         }
 
