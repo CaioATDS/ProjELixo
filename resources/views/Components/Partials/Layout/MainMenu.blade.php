@@ -50,7 +50,7 @@
                     <ul class="nav navbar-nav space-right navbar-right">
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <span class="glyphicon glyphicon-user"></span>
+                                @if(Illuminate\Support\Facades\Auth::user()->picture) <img src="{{ Illuminate\Support\Facades\Auth::user()->picture }}" style="-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; width: 25px;" alt="Avatar">@else <span style="font-size: 19px;" class="glyphicon glyphicon-user"></span> @endif
                                 {{ Illuminate\Support\Facades\Auth::user()->name }}
                                 <b class="caret"></b>
                             </a>
