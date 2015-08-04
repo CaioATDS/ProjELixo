@@ -7,6 +7,7 @@ use Facebook\Exceptions\FacebookSDKException;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Session;
 
@@ -21,7 +22,7 @@ class FacebookCallbackController extends Controller
             try {
                 $token = $fb->getAccessTokenFromRedirect();
             } catch (FacebookSDKException $e) {
-                dd($e->getMessage());
+                return Redirect::back()->withErrors('Algo saiu errado! ' . $e->getMessage());
             }
 
             // Access token will be null if the user denied the request
@@ -35,12 +36,14 @@ class FacebookCallbackController extends Controller
                 }
 
                 // User denied the request
-                dd(
+                return Redirect::back()->withErrors([
+                    'Algo saiu errado! ',
                     $helper->getError(),
                     $helper->getErrorCode(),
                     $helper->getErrorReason(),
                     $helper->getErrorDescription()
-                );
+                ]);
+
             }
 
             if (! $token->isLongLived()) {
@@ -51,7 +54,7 @@ class FacebookCallbackController extends Controller
                 try {
                     $token = $oauth_client->getLongLivedAccessToken($token);
                 } catch (FacebookSDKException $e) {
-                    dd($e->getMessage());
+                    return Redirect::back()->withErrors('Algo saiu errado! ' . $e->getMessage());
                 }
             }
 
@@ -62,9 +65,9 @@ class FacebookCallbackController extends Controller
 
             // Get basic info on the user from Facebook.
             try {
-                $response = $fb->get('/me?fields=id,first_name,last_name,email,picture');
+                $response = $fb->get('/me?fields=id,first_name,last_name,email,picture,gender');
             } catch (FacebookSDKException $e) {
-                dd($e->getMessage());
+                return Redirect::back()->withErrors('Algo saiu errado! ' . $e->getMessage());
             }
 
             // Convert the response to a `Facebook/GraphNodes/GraphUser` collection

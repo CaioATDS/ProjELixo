@@ -1,6 +1,9 @@
 <?php namespace SammyK\LaravelFacebookSdk;
 
+use App\Http\Controllers\Services\EmailController;
+use App\Providers\ConstantesProvider;
 use App\User;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Facebook\GraphNodes\GraphObject;
 use Facebook\GraphNodes\GraphNode;
@@ -34,6 +37,7 @@ trait SyncableGraphNodeTrait
                 'lastname'  => $array['last_name'],
                 'email'     => $array['email'],
                 'picture'   => $array['picture'],
+                'gender'    => $array['gender'],
             ];
         }
 
@@ -45,9 +49,9 @@ trait SyncableGraphNodeTrait
         if($profile)
         {
 
-            $graph_node = $profile;
-            $graph_node->facebook_user_id = $data['id'];
-            $graph_node->picture          = $data['picture']['url'];
+            $graph_node          = $profile;
+            $graph_node->picture = $data['picture']['url'];
+            $graph_node->picture = $data['id'];
             $graph_node->fill($data);
             $graph_node->save();
 
@@ -62,6 +66,17 @@ trait SyncableGraphNodeTrait
 
             $graph_node->picture=$data['picture']['url'];
             $graph_node->save();
+
+            try
+            {
+                $email           = new EmailController(); // enviar email
+                $email->assunto  = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
+                $mensagem        = view('email.bemvindo', [ 'email' => $graph_node->email, 'password'  => 'Você ainda precisa criar sua senha.', ])->render();
+                $email->enviar($graph_node->name, $graph_node->lastname, $graph_node->email, $email->assunto, $mensagem);
+            }catch (Exception $e) {
+                throw new \InvalidArgumentException('Email não pode ser enviado');
+            }
+
         }
 
         return $graph_node;

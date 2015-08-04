@@ -37,7 +37,7 @@ use App\Http\Controllers\Users\SignupController;
 use App\Http\Controllers\Users\UsersController;
 
 // Endpoint that is redirected to after an authentication attempt
-Route::get('/facebook/callback', FacebookCallbackController::index());
+Route::get('/facebook/callback', [ 'as' => 'callback' , FacebookCallbackController::index(), ]);
 
 // perfil rota
 Route::group(['prefix' => 'Perfil', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function(){
