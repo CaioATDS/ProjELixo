@@ -30,9 +30,15 @@
                     <label for="password_confirmation">Confirm Password</label>
                     <input type="password" name="password_confirmation" class="form-control">
                 </div>
+                <br>
+                &nbsp;
+                <br>
+                <div class="form-group padding-rl-10 col-md-12 btn-center text-center">
+                    <button style="width: 100%" type="submit" class="btn btn-success"><i class="fa fa-envelope"></i> &nbsp;Cadastre Com Seu E-mail</button>
+                </div>
 
-                <div class="col-md-6 margin-tb-5">
-                    <button type="submit" class="btn btn-success">Enviar</button>
+                <div class="form-group padding-rl-10 col-md-12 btn-center text-center">
+                    <a style="width: 100%" class="btn btn-primary" href="{{$login_url}}" role="button"><i class="fa fa-facebook-square"></i> &nbsp;Cadastre Com Facebook</a>
                 </div>
 
             </div>
@@ -42,6 +48,5 @@
     </div>
 
 </div>
-
 
 @include('Components.Partials.Layout.BottomPage')

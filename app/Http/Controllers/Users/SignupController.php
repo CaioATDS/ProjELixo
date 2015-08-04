@@ -12,6 +12,7 @@ use Hash;
 use Illuminate\Support\Facades\Auth;
 use Input;
 use Redirect;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class SignupController extends Controller
 {
@@ -19,9 +20,10 @@ class SignupController extends Controller
     static function index()
     {
 
-        return function()
+        return function(LaravelFacebookSdk $fb)
         {
-            return view('auth.register');
+            $login_url = $fb->getLoginUrl(['email']);
+            return view('auth.register',['login_url' => $login_url,]);
         };
 
     }
