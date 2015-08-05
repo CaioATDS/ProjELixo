@@ -12,6 +12,12 @@
                 <td class="col-xs-2 text-right">Avatar: </td>
                 <td class="col-xs-10">@if($Picture) <img src="{{ $Picture }}" alt="Avatar">@else <span style="font-size: 30px;" class="glyphicon glyphicon-user"></span> @endif</td>
             </tr>
+            @if($Facebook)
+            <tr>
+                <td class="col-xs-2 text-right">Facebook: </td>
+                <td class="col-xs-10"><a href="{{$Facebook}}"><i class="fa fa-facebook-square fa-2x"></i></a></td>
+            </tr>
+            @endif
             <tr>
                 <td class="col-xs-2 text-right">Nome: </td>
                 <td class="col-xs-10">{{$UserName}}</td>

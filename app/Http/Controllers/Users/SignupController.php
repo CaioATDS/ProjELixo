@@ -11,6 +11,7 @@ use Exception;
 use Hash;
 use Illuminate\Support\Facades\Auth;
 use Input;
+use InvalidArgumentException;
 use Redirect;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
@@ -51,10 +52,16 @@ class SignupController extends Controller
                 $user->fill($input); // preenche as propriedades do objeto user de acordo com o imput passado pelo form
                 $user->save(); // salva o novo usuario no banco de dados
 
-                $email           = new EmailController(); // enviar email
-                $email->assunto  = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
-                $mensagem = view('email.bemvindo', [ 'email' => $user->email, 'password'  => $SenhaDecriptada, ])->render();
-                $email->enviar($user->name, $user->lastname, $user->email, $email->assunto, $mensagem);
+                try
+                {
+                    $email          = new EmailController(); // enviar email
+                    $email->assunto = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
+                    $mensagem       = view('email.bemvindo', [ 'email' => $user->email, 'password'  => $SenhaDecriptada, ])->render();
+                    $email->enviar($user->name, $user->lastname, $user->email, $email->assunto, $mensagem);
+                }catch (Exception $e)
+                {
+                    throw new InvalidArgumentException('Email não pode ser enviado');
+                }
 
                 }
                 catch (Exception $e)

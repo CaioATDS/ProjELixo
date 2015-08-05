@@ -59,6 +59,7 @@ class ProfileController extends Controller
                 'UserName'      => $user->name,
                 'UserLastname'  => $user->lastname,
                 'UserEmail'     => $user->email,
+                'Facebook'      => $user->facebook_profile_link,
                 'Picture'       => $user->picture,
                 'UserRole'      => RolesModel::getName($user->user_roles),
            ]);

@@ -32,12 +32,13 @@ trait SyncableGraphNodeTrait
         if ($data instanceof GraphObject || $data instanceof GraphNode) {
             $array = $data->asArray();
             $data  = [
-                'id'        => $array['id'],
-                'name'      => $array['first_name'],
-                'lastname'  => $array['last_name'],
-                'email'     => $array['email'],
-                'picture'   => $array['picture'],
-                'gender'    => $array['gender'],
+                'id'                    => $array['id'],
+                'name'                  => $array['first_name'],
+                'lastname'              => $array['last_name'],
+                'email'                 => $array['email'],
+                'picture'               => $array['picture'],
+                'gender'                => $array['gender'],
+                'facebook_profile_link' => $array['link'],
             ];
         }
 
@@ -49,9 +50,10 @@ trait SyncableGraphNodeTrait
         if($profile)
         {
 
-            $graph_node          = $profile;
-            $graph_node->picture = $data['picture']['url'];
-            $graph_node->picture = $data['id'];
+            $graph_node                        = $profile;
+            $graph_node->picture               = $data['picture']['url'];
+            $graph_node->picture               = $data['id'];
+            $graph_node->facebook_profile_link = $array['link'];
             $graph_node->fill($data);
             $graph_node->save();
 
@@ -69,12 +71,12 @@ trait SyncableGraphNodeTrait
 
             try
             {
-                $email           = new EmailController(); // enviar email
-                $email->assunto  = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
-                $mensagem        = view('email.bemvindo', [ 'email' => $graph_node->email, 'password'  => 'Você ainda precisa criar sua senha.', ])->render();
+                $email          = new EmailController(); // enviar email
+                $email->assunto = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
+                $mensagem       = view('email.bemvindo', [ 'email' => $graph_node->email, 'password'  => 'Você ainda precisa criar sua senha.', ])->render();
                 $email->enviar($graph_node->name, $graph_node->lastname, $graph_node->email, $email->assunto, $mensagem);
             }catch (Exception $e) {
-                throw new \InvalidArgumentException('Email não pode ser enviado');
+                throw new \InvalidArgumentException('Email não pode ser enviado' . $e->getMessage());
             }
 
         }
