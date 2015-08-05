@@ -107,8 +107,10 @@ class ProfileController extends Controller
                 'UserId'        => $user->id,
                 'UserName'      => $user->name,
                 'UserLastname'  => $user->lastname,
+                'Enable'        => ($user->enable == 0) ? 'checked=checked' : '',
                 'UserEmail'     => $user->email,
                 'UserRole'      => RolesModel::getName($user->user_roles),
+                'RolesLists'    => RolesModel::all()->sortBy('id'),
             ]);
         };
     }
@@ -154,20 +156,23 @@ class ProfileController extends Controller
                         return Redirect::back()->withErrors('email já cadastrado.')->withInput();
                 }
 
-                $user->name     = $input['name'];
-                $user->lastname = $input['lastname'];
-                $user->email    = $input['email'];
+                $user->enable = (isset($input['enable'])) ? 0 : 1;
+                $user->fill($input);
                 $user->save(); // salva as mudanças no banco de dados
 
-                $enviar           = new EmailController();//envia email
-                $enviar->assunto  = 'Sua conta foi modificada!';
-                $enviar->mensagem = 'Alguns dados de sua conta foram modificados.';
-
-                $enviar->enviar($input['name'],$input['lastname'],$input['email'],$enviar->assunto,$enviar->mensagem);
+                try
+                {
+                    $enviar           = new EmailController();//envia email
+                    $enviar->assunto  = 'Sua conta foi modificada!';
+                    $enviar->mensagem = 'Alguns dados de sua conta foram modificados.';
+                    $enviar->enviar($input['name'],$input['lastname'],$input['email'],$enviar->assunto,$enviar->mensagem);
+                }catch (Exception $e){
+                    return redirect('/Perfil/'.$input['id'])->with('status', 'Perfil Atualizado com sucesso, mas não foi possível enviar um email.');
+                }
 
             } catch (Exception $e)
             {
-                return Redirect::back()->withErrors('Algo saiu errado.')->withInput();
+                return Redirect::back()->withErrors('Algo saiu errado.'. $e->getMessage())->withInput();
             }
             return redirect('/Perfil/'.$input['id'])->with('status', 'Perfil Atualizado com sucesso');
         };

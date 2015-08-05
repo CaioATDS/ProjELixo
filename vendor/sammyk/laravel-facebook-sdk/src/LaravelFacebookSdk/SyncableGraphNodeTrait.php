@@ -31,7 +31,7 @@ trait SyncableGraphNodeTrait
         // @todo this will be GraphNode soon
         if ($data instanceof GraphObject || $data instanceof GraphNode) {
             $array = $data->asArray();
-            $data  = [
+            $data  = [ // rename o array, vindo do facebook, para coincidir com o banco de dados local.
                 'id'                    => $array['id'],
                 'name'                  => $array['first_name'],
                 'lastname'              => $array['last_name'],
@@ -46,19 +46,18 @@ trait SyncableGraphNodeTrait
             throw new \InvalidArgumentException('Graph node id is missing');
         }
 
+        // se o perfil já existe mas não possui um facebook associado, atualize
         $profile = User::where('email', $data['email'])->whereNull('facebook_user_id')->first();
         if($profile)
         {
 
-            $graph_node                        = $profile;
-            $graph_node->picture               = $data['picture']['url'];
-            $graph_node->picture               = $data['id'];
-            $graph_node->facebook_profile_link = $array['link'];
+            $graph_node          = $profile;
+            $graph_node->picture = $data['picture']['url'];
             $graph_node->fill($data);
             $graph_node->save();
 
         }
-        else
+        else // criar novo perfil ou atualize
         {
             $attributes = [static::getGraphNodeKeyName() => $data['id']];
 
@@ -66,18 +65,21 @@ trait SyncableGraphNodeTrait
 
             static::mapGraphNodeFieldNamesToDatabaseColumnNames($graph_node, $data);
 
+            $hasKey = (bool) User::where('facebook_user_id', $data['id'])->first(); // check se está sendo feito um update ou um create user.
+
             $graph_node->picture=$data['picture']['url'];
             $graph_node->save();
 
-            try
-            {
-                $email          = new EmailController(); // enviar email
-                $email->assunto = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
-                $mensagem       = view('email.bemvindo', [ 'email' => $graph_node->email, 'password'  => 'Você ainda precisa criar sua senha.', ])->render();
-                $email->enviar($graph_node->name, $graph_node->lastname, $graph_node->email, $email->assunto, $mensagem);
-            }catch (Exception $e) {
-                throw new \InvalidArgumentException('Email não pode ser enviado' . $e->getMessage());
-            }
+            if(!$hasKey) // se um novo perfil foi criado, envie email
+                try
+                {
+                    $email           = new EmailController(); // enviar email
+                    $email->assunto  = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
+                    $email->mensagem = view('email.bemvindo', [ 'email' => $graph_node->email, 'password'  => 'Você ainda precisa criar sua senha.', ])->render();
+                    $email->enviar($graph_node->name, $graph_node->lastname, $graph_node->email, $email->assunto, $email->mensagem);
+                }catch (Exception $e) {
+                    throw new \InvalidArgumentException('Email não pôde ser enviado' . $e->getMessage());
+                }
 
         }
 

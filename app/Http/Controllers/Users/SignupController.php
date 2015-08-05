@@ -54,10 +54,10 @@ class SignupController extends Controller
 
                 try
                 {
-                    $email          = new EmailController(); // enviar email
-                    $email->assunto = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
-                    $mensagem       = view('email.bemvindo', [ 'email' => $user->email, 'password'  => $SenhaDecriptada, ])->render();
-                    $email->enviar($user->name, $user->lastname, $user->email, $email->assunto, $mensagem);
+                    $email           = new EmailController(); // enviar email
+                    $email->assunto  = 'Bem-vindo ao ' .ConstantesProvider::SiteName. '!‏'; // define o titulo
+                    $email->mensagem = view('email.bemvindo', [ 'email' => $user->email, 'password'  => $SenhaDecriptada, ])->render();
+                    $email->enviar($user->name, $user->lastname, $user->email, $email->assunto, $email->mensagem);
                 }catch (Exception $e)
                 {
                     throw new InvalidArgumentException('Email não pode ser enviado');

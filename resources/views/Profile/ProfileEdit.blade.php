@@ -29,7 +29,33 @@
                             <input type="email" name="email" class="form-control" value="{{ $UserEmail }}">
                         </div>
 
-                        <div class="form-group">
+                        @if(\App\Http\Controllers\Auth\RolesController::validar('Admin'))
+                            <div class="col-xs-4">
+                                <div class="inline-checkbox ">
+                                    <label for="enable">
+                                        Desativar
+                                        <input name="enable" class="form-control" value="0" type="checkbox"{{ $Enable }}>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <label for="user_roles">Classe</label>
+                                <select name="user_roles" class="form-control">
+                                    @foreach($RolesLists as $RolesLit)
+
+                                        <option value="{{$RolesLit['id']}}"  {{$UserRole==$RolesLit['name'] ? 'selected="selected"' : ''}} >{{$RolesLit['name']}}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-xs-4">
+
+                            </div>
+                            <br>
+                        @endif
+
+                        <div class="form-group col-xs-12">
                             <button type="submit" class="btn btn-success">Atualizar Perfil</button>
                         </div>
 
