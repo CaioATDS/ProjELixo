@@ -3,7 +3,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading"><strong>Entrar:</strong>
-        <span><small>Digite seus dados para entrar: Restam <span class="text-danger">{{1+$MaxLoginAttempts-$loginAttempts}}</span> tentativas</small></span>
+        <span><small>Digite seus dados para entrar: {!! (isset($loginAttempts))? "Restam <span class='text-dangera'> $loginAttempts </span> tentativas" : '' !!} </small></span>
     </div>
     <div class="panel-body">
 
@@ -19,7 +19,7 @@
 
                 <div class="form-group">
                     <label for="email">Senha</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha" value="{{ old('email') }}">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha" value="">
                 </div>
 
                 <div class="form-group">

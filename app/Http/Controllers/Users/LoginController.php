@@ -22,10 +22,11 @@ class LoginController extends Controller
         return function(LaravelFacebookSdk $fb)
         {
             $login_url = $fb->getLoginUrl(['email']);
+            $loginAttempts    = Session::get('loginAttempts');
             return view('auth.login',[
                 'login_url'        => $login_url,
                 'MaxLoginAttempts' => env('LOGIN_ATTEMPTS'),
-                'loginAttempts'    => Session::get('loginAttempts'),
+                'loginAttempts'    => $loginAttempts,
             ]);
         };
     }
@@ -50,13 +51,13 @@ class LoginController extends Controller
                 if (time() - $loginAttemptTime > $AttemptTimeLimit)
                 {
 
-                    Session::put('loginAttempts', 1);
+                    Session::put('loginAttempts', env('LOGIN_ATTEMPTS'));
                     Session::put('loginAttemptTime',time());
 
                 }
 
                 // if attempts > 3 and time < 10 minutes
-                if ($loginAttempts > $MaxLoginAttempts && (time() - $loginAttemptTime <= $AttemptTimeLimit))
+                if ($loginAttempts <= 0 && (time() - $loginAttemptTime <= $AttemptTimeLimit))
                     return Redirect::back()->WithErrors('Você excedeu o limite de tentativas de login, por favor volte mais tarde.');
 
             }
@@ -76,7 +77,7 @@ class LoginController extends Controller
                 //tenta logar o usuario
                 if( ! Auth::attempt(['email' => Input::Get('email'), 'password' => Input::Get('password'), 'enable' => 1, ]) )
                 {
-                    Session::put('loginAttempts',$loginAttempts+1);
+                    Session::put('loginAttempts',$loginAttempts-1);
                     Session::put('loginAttemptTime',time());
                     throw new ModelNotFoundException(); // se o login falhar joga um erro.
                 }
@@ -85,7 +86,7 @@ class LoginController extends Controller
             }
             catch(ModelNotFoundException $error)
             {
-                return redirect('/User/Entrar')->WithErrors(($loginAttempts < $MaxLoginAttempts) ?  'O email e senha estão incorretos.' : 'Essa é sua última tentativa de login, sua conta poderá ser bloqueada.');
+                return redirect('/User/Entrar')->WithErrors(($loginAttempts >= 2) ?  'O email e senha estão incorretos.' : 'Essa é sua última tentativa de login, sua conta poderá ser bloqueada.');
             }
             catch(Exception $exception)
             {
