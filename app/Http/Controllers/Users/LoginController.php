@@ -33,6 +33,7 @@ class LoginController extends Controller
 
             // Set logim attempts and login time
             $loginAttempts    = env('LOGIN_ATTEMPTS');
+            $MaxLoginAttempts = env('LOGIN_ATTEMPTS');
             $AttemptTimeLimit = env('LOGIN_ATTEMPTS_DEADTIME');
 
             // if session has login attempts, retrieve attempts counter and attempt time
@@ -51,7 +52,7 @@ class LoginController extends Controller
                 }
 
                 // if attempts > 3 and time < 10 minutes
-                if ($loginAttempts > 3 && (time() - $loginAttemptTime <= $AttemptTimeLimit))
+                if ($loginAttempts > $MaxLoginAttempts && (time() - $loginAttemptTime <= $AttemptTimeLimit))
                     return Redirect::back()->WithErrors('Você excedeu o limite de tentativas de login, por favor volte mais tarde.');
 
             }
@@ -80,7 +81,7 @@ class LoginController extends Controller
             }
             catch(ModelNotFoundException $error)
             {
-                return Redirect::back()->WithErrors(($loginAttempts<3) ?  'O email e senha estão incorretos ou essa conta foi desativada.' : 'Essa é sua última tentativa de login, sua conta poderá ser bloqueada.');
+                return redirect('/User/Entrar')->WithErrors(($loginAttempts < $MaxLoginAttempts) ?  'O email e senha estão incorretos.' : 'Essa é sua última tentativa de login, sua conta poderá ser bloqueada.');
             }
             catch(Exception $exception)
             {
