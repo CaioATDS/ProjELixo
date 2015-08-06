@@ -155,20 +155,13 @@ class ProfileController extends Controller
                     if (User::hasemail($input['email']))
                         return Redirect::back()->withErrors('email já cadastrado.')->withInput();
                 }
+//                dd($input['enable'] . ' - ' . $user->user_roles);
+                if (isset($input['enable']) and $input['enable'] == 0 and $user->user_roles > 1)
+                    return Redirect::back()->withErrors('Você só pode desativar usuários, então primeiro mude a classe desse para usuário antes.')->withInput();
 
                 $user->enable = (isset($input['enable'])) ? 0 : 1;
                 $user->fill($input);
                 $user->save(); // salva as mudanças no banco de dados
-
-                try
-                {
-                    $enviar           = new EmailController();//envia email
-                    $enviar->assunto  = 'Sua conta foi modificada!';
-                    $enviar->mensagem = 'Alguns dados de sua conta foram modificados.';
-                    $enviar->enviar($input['name'],$input['lastname'],$input['email'],$enviar->assunto,$enviar->mensagem);
-                }catch (Exception $e){
-                    return redirect('/Perfil/'.$input['id'])->with('status', 'Perfil Atualizado com sucesso, mas não foi possível enviar um email.');
-                }
 
             } catch (Exception $e)
             {
@@ -201,6 +194,17 @@ class ProfileController extends Controller
                 {
                     $user->password = Hash::make($input['password']);
                     $user->save();
+
+                    try
+                    {
+                        $enviar           = new EmailController();//envia email
+                        $enviar->assunto  = 'Sua senha foi modificada!';
+                        $enviar->mensagem = 'Sua senha de acesso ao portal '. ConstantesProvider::SiteName.' acabou de ser modificada.';
+                        $enviar->enviar($user->name,$user->lastname,$user->email,$enviar->assunto,$enviar->mensagem);
+                    }catch (Exception $e){
+                        return redirect('/Perfil/'.$input['id'])->with('status', 'Perfil Atualizado com sucesso, mas não foi possível enviar um email.');
+                    }
+
                 }
 
             } catch (Exception $e)
