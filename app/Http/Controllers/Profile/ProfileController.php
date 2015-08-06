@@ -135,7 +135,7 @@ class ProfileController extends Controller
                 // se o id passado pelo form for diferente do usuario logado,
                 // e a classe do user logado for diferente de admin return false
                 if($input['id'] != Auth::user()->id && is_null(RolesController::validar('Admin')))
-                    return Redirect::back()->withErrors('Voce nao tem permissao para isso.')->withInput();
+                    return Redirect::back()->withErrors('Voce nao tem permissão para isso.')->withInput();
 
                 // se avalidaçao falhar retorne com erros
                 if ($validar->fails())

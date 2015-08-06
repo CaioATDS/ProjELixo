@@ -5,7 +5,8 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle space-right collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+
+                <button type="button" class="navbar-toggle collapsed space-right" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -24,19 +25,8 @@
                             <strong>{{ \App\Models\ItensModel::count(Auth::user()->id) }}</strong>
                         </sup>
                     </form>
-                @else
-                    <form class="navbar-form pull-right" action="{{asset('itens/lixeira')}}">
-                        <div class="btn-group btn-left">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                entrar
-                            </button>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="{{asset('User/Entrar')}}">      Entrar      </a></li>
-                                <li><a href="{{asset('User/Cadastro')}}">    Registrar   </a></li>
-                            </ul>
-                        </div>
-                    </form>
                 @endif
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,7 +39,7 @@
                 </ul>
 
                 @if( Illuminate\Support\Facades\Auth::check())
-                    <ul class="nav navbar-nav space-right navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                 @if(Auth::user()->picture) <img src="{{ Auth::user()->picture }}" style="-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; width: 19px;" alt="Avatar">@else <span style="font-size: 19px;" class="glyphicon glyphicon-user"></span> @endif
