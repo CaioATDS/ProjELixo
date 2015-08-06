@@ -22,7 +22,11 @@ class LoginController extends Controller
         return function(LaravelFacebookSdk $fb)
         {
             $login_url = $fb->getLoginUrl(['email']);
-            return view('auth.login',['login_url' => $login_url,]);
+            return view('auth.login',[
+                'login_url'        => $login_url,
+                'MaxLoginAttempts' => env('LOGIN_ATTEMPTS'),
+                'loginAttempts'    => Session::get('loginAttempts'),
+            ]);
         };
     }
 

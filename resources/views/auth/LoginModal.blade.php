@@ -56,7 +56,7 @@
 
                                 <div class="form-group">
                                     <label for="email">Senha</label>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha" value="{{ old('email') }}">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha" value="{{ old('password') }}">
                                 </div>
 
                                 <div class="form-group">

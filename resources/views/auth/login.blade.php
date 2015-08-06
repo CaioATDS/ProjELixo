@@ -3,7 +3,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading"><strong>Entrar:</strong>
-        <span><small>Digite seus dados para entrar:</small></span>
+        <span><small>Digite seus dados para entrar: Restam <span class="text-danger">{{1+$MaxLoginAttempts-$loginAttempts}}</span> tentativas</small></span>
     </div>
     <div class="panel-body">
 
