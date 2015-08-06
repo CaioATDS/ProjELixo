@@ -53,6 +53,10 @@ class LoginController extends Controller
 
                     Session::put('loginAttempts', env('LOGIN_ATTEMPTS'));
                     Session::put('loginAttemptTime',time());
+                    $loginAttempts    = env('LOGIN_ATTEMPTS');
+                    $MaxLoginAttempts = env('LOGIN_ATTEMPTS');
+
+                }else{
 
                 }
 
