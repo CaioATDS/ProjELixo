@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class StaticasController extends Controller
 {
@@ -13,9 +14,9 @@ class StaticasController extends Controller
     public static function parceiros()
     {
 
-        return function()
+        return function(LaravelFacebookSdk $fb)
         {
-            return view('Pages.Parceiros');
+            return view('Pages.Parceiros',[ 'login_url' => $fb->getLoginUrl(['email'])]);
         };
 
     }
@@ -23,9 +24,9 @@ class StaticasController extends Controller
     public static function projeto()
     {
 
-        return function()
+        return function(LaravelFacebookSdk $fb)
         {
-            return view('Pages.Projeto');
+            return view('Pages.Projeto',[ 'login_url' => $fb->getLoginUrl(['email'])]);
         };
 
     }
@@ -33,9 +34,9 @@ class StaticasController extends Controller
     public static function mapa()
     {
 
-        return function()
+        return function(LaravelFacebookSdk $fb)
         {
-            return view('Pages.Mapa');
+            return view('Pages.Mapa',[ 'login_url' => $fb->getLoginUrl(['email'])]);
         };
 
     }
@@ -43,9 +44,9 @@ class StaticasController extends Controller
     public static function pontos()
     {
 
-        return function()
+        return function(LaravelFacebookSdk $fb)
         {
-            return view('Pages.Pontos');
+            return view('Pages.Pontos',[ 'login_url' => $fb->getLoginUrl(['email'])]);
         };
 
     }
