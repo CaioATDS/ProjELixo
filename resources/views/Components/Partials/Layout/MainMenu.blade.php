@@ -2,7 +2,33 @@
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Illuminate\Support\Facades\Auth;
 ?>
+<style>
+    .logo-link:hover,
+    .logo-link:active{
+        text-decoration: none;
+    }
+    @media (max-width:767px) {
+        .logo-title
+        {
+            display: none;
+        }
+    }
+</style>
+<div class="jumbotron jumbotron-main">
+    <div class="col-xs-6 text-left">
+        <a href="{{asset('/')}}" class="logo-link">
+        <div style="display: inline-flex">
+            <img src="{{asset('images/logos/e-lixo-logo.png')}}" alt="logo-e-Lixo-toledo" style="max-width: 74px; max-height: 70px;vertical-align: middle;">
+            <h1 class="logo-title" style="padding-left: 15px;margin: 0; color: #ffffff; border-color: transparent;">e-Lixo</h1>
+        </div>
+        </a>
+    </div>
+    <div class="col-xs-6 text-right">
 
+        <img src="http://toledoprudente.edu.br/imagens/logotipo_toledo.png" alt="logo-toledo" style="max-width: 100%;">
+
+    </div>
+</div>
 <header class="block">
     <nav class="navbar navbar-default margin-none">
         <div class="container-fluid">
@@ -19,7 +45,7 @@ use Illuminate\Support\Facades\Auth;
                 <a class="navbar-brand" href="{{asset('/')}}">e-Lixo</a>
 
                 @if(Auth::check())
-                    <form class="navbar-form pull-right" action="{{asset('itens/lixeira')}}">
+                    <form class="navbar-form" action="{{asset('itens/lixeira')}}">
                         <button type="submit" class="btn btn-default btn-left">
                               <i class="fa fa-trash"></i>
                               <i class="fa fa-recycle"></i>
@@ -67,19 +93,7 @@ use Illuminate\Support\Facades\Auth;
         </div><!-- /.container-fluid -->
     </nav>
 </header>
-<div class="jumbotron jumbotron-main">
-    <div class="col-xs-6 text-left">
 
-        <img src="http://toledoprudente.edu.br/imagens/logotipo_toledo.png" alt="logo-toledo" style="max-width: 100%;">
-
-    </div>
-    <div class="col-xs-6 text-right">
-        <div style="display: inline-flex">
-            <img src="{{asset('images/logos/e-lixo-logo.png')}}" alt="logo-e-Lixo-toledo" style="max-height: 70px;vertical-align: middle;">
-        </div>
-
-    </div>
-</div>
 @if( ! Auth::check())
 
     <div class="row">
