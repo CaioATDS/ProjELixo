@@ -90,6 +90,9 @@ small, sup {
 .padding-all-10 {
   padding: 10px;
 }
+.margin-none {
+    margin: 0 !important;
+}
 .margin-all-10 {
     margin: 10px;
 }
@@ -121,6 +124,17 @@ small, sup {
     margin-bottom: 60px;
 }
 /*override*/
+.jumbotron-main {
+    padding: 10px 0;
+    background-color: #002c54;
+    border-radius    : 0 !important;
+    display         : -webkit-box;
+}
+.jumbotron-main .col-xs-6 {
+    width: 50%;
+    height: 70px;
+    line-height: 70px;
+}
 @media (max-width:767px) {
 
     body{

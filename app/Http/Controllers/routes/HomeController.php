@@ -11,11 +11,11 @@ class HomeController extends Controller
 {
     public static function index()
     {
-        return function(LaravelFacebookSdk $fb){
+        return function(){
 
             return view('Pages.MainPage', [
                 'Categorias' => CategoriasModel::getList(),
-                'login_url' => $fb->getLoginUrl(['email']),
+
             ]);
         };
     }
