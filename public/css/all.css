@@ -6116,22 +6116,43 @@ small, sup {
      color: #fff;
  }
 }
+.jumbotron-main {
+   padding: 10px 0;
+   background-color: #002c54;
+   border-radius    : 0 !important;
+   display         : -webkit-box;
+ }
+.jumbotron-main .col-xs-6 {
+  width: 50%;
+  height: 70px;
+  line-height: 70px;
+}
+a.navbar-brand {
+  border-bottom: solid 3px transparent;
+}
+a.navbar-brand:hover {
+  border-color: rgb(213,133,0);
+}
+ul.nav.navbar-nav a {
+  border-bottom: solid 3px transparent;
+  padding-bottom: 12px;
+}
+ul.nav.navbar-nav a:hover
+{
+  border-color: rgb(213,133,0);
+}
 /*override*/
 .panel {
     margin-bottom: 60px;
 }
+.navbar-right {
+  margin-right: 40px !important;
+}
+ul.dropdown-menu a,
+ul.dropdown-menu a:hover{
+  border-bottom: 0 !important;
+}
 /*override*/
-.jumbotron-main {
-    padding: 10px 0;
-    background-color: #002c54;
-    border-radius    : 0 !important;
-    display         : -webkit-box;
-}
-.jumbotron-main .col-xs-6 {
-    width: 50%;
-    height: 70px;
-    line-height: 70px;
-}
 @media (max-width:767px) {
 
     body{

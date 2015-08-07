@@ -16,7 +16,7 @@ class FacebookCallbackController extends Controller
 
     public static function index()
     {
-        return function(LaravelFacebookSdk $fb)
+        return function(LaravelFacebookSdk $fb, User $user)
         {
             // Obtain an access token.
             try {
@@ -76,7 +76,7 @@ class FacebookCallbackController extends Controller
             // Create the user if it does not exist or update the existing entry.
             // This will only work if you've added the SyncableGraphNodeTrait to your User model.
 
-            $user = User::createOrUpdateGraphNode($facebook_user);
+            $user = $user->createOrUpdateGraphNode($facebook_user);
 
             // Log the user into Laravel
             Auth::login($user);

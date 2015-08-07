@@ -21,8 +21,8 @@ class LoginController extends Controller
     {
         return function(LaravelFacebookSdk $fb)
         {
-            $login_url = $fb->getLoginUrl(['email']);
-            $loginAttempts    = Session::get('loginAttempts');
+            $login_url     = $fb->getLoginUrl(['email']);
+            $loginAttempts = Session::get('loginAttempts');
             return view('auth.login',[
                 'login_url'        => $login_url,
                 'MaxLoginAttempts' => env('LOGIN_ATTEMPTS'),
@@ -38,7 +38,6 @@ class LoginController extends Controller
 
             // Set logim attempts and login time
             $loginAttempts    = env('LOGIN_ATTEMPTS');
-            $MaxLoginAttempts = env('LOGIN_ATTEMPTS');
             $AttemptTimeLimit = env('LOGIN_ATTEMPTS_DEADTIME');
 
             // if session has login attempts, retrieve attempts counter and attempt time
@@ -54,9 +53,6 @@ class LoginController extends Controller
                     Session::put('loginAttempts', env('LOGIN_ATTEMPTS'));
                     Session::put('loginAttemptTime',time());
                     $loginAttempts    = env('LOGIN_ATTEMPTS');
-                    $MaxLoginAttempts = env('LOGIN_ATTEMPTS');
-
-                }else{
 
                 }
 
@@ -67,7 +63,7 @@ class LoginController extends Controller
             }
 
             //validaçao dos inputs
-            $validation = Validator::make(Input::all(), [
+            $validation     = Validator::make(Input::all(), [
                 'email'     => 'required|email',
                 'password'  => 'required',
             ]);
