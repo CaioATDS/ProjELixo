@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Auth;
     }
     @media (max-width:767px) {
         .navbar-right {
-            margin-right: 0 !important;
+            margin-right: -15px !important;
         }
         .logo-toledo{
             display: none;
