@@ -6,6 +6,8 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow-x: hidden;
 }
 
 th {
@@ -25,9 +27,7 @@ small, sup {
 }
 
 .middle-content {
-    min-height: 60px;
-    max-height: 60px;
-    display: block;
+    padding: 8px 0;
 }
 .navbar-form {
   border-color: transparent !important;
@@ -42,10 +42,7 @@ small, sup {
 }
 
 .expanded-wrapper span {
-     position: absolute;
-     top: 50%;
-     width: 100%;
-     transform: translate(-50%,-50%);
+     display: block;
  }
 .btn-left {
     position    : absolute;
@@ -127,9 +124,8 @@ small, sup {
    display         : -webkit-box;
  }
 .jumbotron-main .col-xs-6 {
-  width: 50%;
-  height: 70px;
-  line-height: 70px;
+  height: 50px;
+  line-height: 45px;
 }
 a.navbar-brand {
   border-bottom: solid 3px transparent;
@@ -139,11 +135,18 @@ a.navbar-brand:hover {
 }
 ul.nav.navbar-nav a {
   border-bottom: solid 3px transparent;
-  padding-bottom: 12px;
+  padding-bottom: 5px;
 }
 ul.nav.navbar-nav a:hover
 {
   border-color: rgb(213,133,0);
+}
+.grid-main {
+  max-width: 810px;
+}
+.link-content {
+  margin-top: -8px;
+  padding: 26px 0;
 }
 /*override*/
 .panel {
@@ -157,6 +160,11 @@ ul.dropdown-menu a:hover{
   border-bottom: 0 !important;
 }
 /*override*/
+@media (max-width:990px) {
+  .grid-main {
+    max-width: 580px;
+  }
+}
 @media (max-width:767px) {
 
     body{
@@ -170,6 +178,8 @@ ul.dropdown-menu a:hover{
     .btn-left {
         margin-top  : -10px;
     }
-
+  .grid-main {
+    max-width: 390px;
+  }
 }
 
