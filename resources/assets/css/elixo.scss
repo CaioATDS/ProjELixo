@@ -126,6 +126,7 @@ small, sup {
 .radius-5 {
     border: solid 1px #ccc;
     border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 .btn-transparent {
     background: transparent;
@@ -136,14 +137,16 @@ small, sup {
      color: #fff;
  }
 }
-.jumbotron-main {
+.header-top {
    padding: 10px 0;
+   padding-left: 60px;
+   padding-right: 60px;
    margin: 0;
    background-color: #002c54;
    border-radius    : 0 !important;
    display         : -webkit-box;
  }
-.jumbotron-main .col-xs-6 {
+.header-top .col-xs-6 {
   height: 50px;
   line-height: 45px;
 }

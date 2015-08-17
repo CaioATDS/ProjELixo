@@ -41,24 +41,26 @@ use Illuminate\Support\Facades\Auth;
         }
     }
 </style>
-<div class="jumbotron jumbotron-main">
-    <div class="col-xs-6 text-left">
-        <a href="{{asset('/')}}" class="logo-link">
-        <div style="display: inline-flex">
-            <img src="{{asset('images/logos/e-lixo-logo.png')}}" alt="logo-e-Lixo-toledo" style="max-width: 50px; max-height: 50px;vertical-align: middle;">
-            <h1 class="logo-title">e-Lixo</h1>
-        </div>
-        </a>
-    </div>
-    <div class="col-xs-6 text-right">
-        <a href="http://toledoprudente.edu.br" target="_blank">
-            <img class="logo-toledo" src="{{asset('images/logos/logotipo_toledo.png')}}" alt="logo-toledo">
-            <img class="logo-aguia" src="{{asset('images/logos/Aguia-toledo.svg')}}" alt="logo-toledo">
-        </a>
-
-    </div>
-</div>
 <header class="block">
+
+    <div class="header-top">
+        <div class="col-xs-6 text-left">
+            <a href="{{asset('/')}}" class="logo-link">
+            <div style="display: inline-flex">
+                <img src="{{asset('images/logos/e-lixo-logo.png')}}" alt="logo-e-Lixo-toledo" style="max-width: 50px; max-height: 50px;vertical-align: middle;">
+                <h1 class="logo-title">e-Lixo</h1>
+            </div>
+            </a>
+        </div>
+        <div class="col-xs-6 text-right">
+            <a href="http://toledoprudente.edu.br" target="_blank">
+                <img class="logo-toledo" src="{{asset('images/logos/logotipo_toledo.png')}}" alt="logo-toledo">
+                <img class="logo-aguia" src="{{asset('images/logos/Aguia-toledo.svg')}}" alt="logo-toledo">
+            </a>
+
+        </div>
+    </div>
+
     <nav class="navbar navbar-default margin-none e-navbar">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
