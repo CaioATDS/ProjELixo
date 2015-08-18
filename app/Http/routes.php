@@ -31,6 +31,7 @@ use App\Http\Controllers\routes\StaticasController;
 use App\Http\Controllers\routes\SubCategoriasController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Administrator\ColetaController;
+use App\Http\Controllers\Administrator\EventsController;
 use App\Http\Controllers\Users\LoginController;
 use App\Http\Controllers\Users\LogoutController;
 use App\Http\Controllers\Users\SignupController;
@@ -84,6 +85,7 @@ Route::group(['prefix' => 'Admin', 'middleware' => [ 'auth', 'roles:Aluno', ], ]
     Route::get('/Coletados',    [ 'as' => 'coletados',  ColetaController::coletados(),  ]);
     Route::post('/Coletar',     [ 'as' => 'coletar',    ColetaController::store(),      ]);
     Route::get('/Usuarios',     [ 'as' => 'usuarios',   UsersController::index(),       ]);
+    Route::get('/Eventos',      [ 'as' => 'events',     EventsController::index(),      ]);
 
 });
 
