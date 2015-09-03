@@ -26,27 +26,35 @@ class EventsController extends Controller
 
     public static function create()
     {
-        //
+        return function()
+        {
+            return "criar evento()";
+        };
+
     }
 
-
-    public static function store(Request $request)
+    public static function show()
     {
-        //
+        return function()
+        {
+           return "mostrar evento";
+        };
+
     }
 
-    public static function show($id)
+    public static function edit()
     {
-        //
+        return function()
+        {
+           return "edit evento";
+        };
     }
 
-    public static function edit($id)
+    public static function remove()
     {
-        //
-    }
-
-    public static function destroy($id)
-    {
-        //
+        return function()
+        {
+           return "deletar evento";
+        };
     }
 }

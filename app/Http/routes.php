@@ -81,11 +81,16 @@ Route::group(['prefix' => 'Subcategoria', 'middleware' => [ 'auth', 'roles:Usuá
 
 Route::group(['prefix' => 'Admin', 'middleware' => [ 'auth', 'roles:Aluno', ], ], function(){
 
-    Route::get('/Coleta',       [ 'as' => 'coleta',     ColetaController::index(),      ]);
-    Route::get('/Coletados',    [ 'as' => 'coletados',  ColetaController::coletados(),  ]);
-    Route::post('/Coletar',     [ 'as' => 'coletar',    ColetaController::store(),      ]);
-    Route::get('/Usuarios',     [ 'as' => 'usuarios',   UsersController::index(),       ]);
-    Route::get('/Eventos',      [ 'as' => 'events',     EventsController::index(),      ]);
+    Route::get('/Coleta',           [ 'as' => 'coleta',         ColetaController::index(),      ]);
+    Route::get('/Coletados',        [ 'as' => 'coletados',      ColetaController::coletados(),  ]);
+    Route::post('/Coletar',         [ 'as' => 'coletar',        ColetaController::store(),      ]);
+    Route::get('/Usuarios',         [ 'as' => 'usuarios',       UsersController::index(),       ]);
+    /* controles de eventos */
+    Route::get('/Eventos',            [ 'as' => 'events',         EventsController::index(),      ]);
+    Route::get('/Eventos/Novo',       [ 'as' => 'eventsNew',      EventsController::create(),     ]);
+    Route::get('/Eventos/{id?}',      [ 'as' => 'eventsShow',     EventsController::show(),       ]);
+    Route::get('/Eventos/Edit/{id?}', [ 'as' => 'eventsEdit',     EventsController::edit(),       ]);
+    Route::get('/Eventos/Del/{id?}',  [ 'as' => 'eventsDelete',   EventsController::remove(),     ]);
 
 });
 

@@ -43,7 +43,7 @@ use Illuminate\Support\Facades\Auth;
 </style>
 <header class="block">
 
-    <div class="header-top">
+    <div class="header-top" style="padding:10px 0">
         <div class="col-xs-6 text-left">
             <a href="{{asset('/')}}" class="logo-link">
             <div style="display: inline-flex">
@@ -112,6 +112,7 @@ use Illuminate\Support\Facades\Auth;
                                         <li><a href="{{asset('Admin/Coleta')}}">     Coleta     </a></li>
                                         <li><a href="{{asset('Admin/Coletados')}}">  Coletados  </a></li>
                                         <li><a href="{{asset('Admin/Usuarios')}}">   Usuários  </a></li>
+                                        <li><a href="{{asset('Admin/Eventos')}}">   Eventos  </a></li>
                                         <li class="divider"></li>
                                     @endif
                                 <li><a href="{{asset('/User/Sair')}}">     Sair       </a></li>
