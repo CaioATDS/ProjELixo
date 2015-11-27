@@ -7,6 +7,7 @@ use Facebook\Exceptions\FacebookSDKException;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 use Redirect;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Session;
@@ -24,26 +25,26 @@ class FacebookCallbackController extends Controller
             } catch (FacebookSDKException $e) {
                 return Redirect::back()->withErrors('Algo saiu errado! ' . $e->getMessage());
             }
-
-            // Access token will be null if the user denied the request
-            // or if someone just hit this URL outside of the OAuth flow.
             if (! $token) {
-                // Get the redirect helper
-                $helper = $fb->getRedirectLoginHelper();
+                try {
+                    // Access token will be null if the user denied the request
+                    // or if someone just hit this URL outside of the OAuth flow.
+                    // Get the redirect helper
+                    $helper = $fb->getRedirectLoginHelper();
 
-                if (! $helper->getError()) {
-                    abort(403, 'Unauthorized action.');
+                    if (! $helper->getError())
+                        return redirect('/')->withErrors('Facebook não enviou a autorização.');
+
+                } catch (FacebookSDKException $e) {
+                    // User denied the request
+                    return Redirect::back()->withErrors([
+                        'Facebook não enviou a autorização.',
+                        $helper->getError(),
+                        $helper->getErrorCode(),
+                        $helper->getErrorReason(),
+                        $helper->getErrorDescription()
+                    ]);
                 }
-
-                // User denied the request
-                return Redirect::back()->withErrors([
-                    'Algo saiu errado! ',
-                    $helper->getError(),
-                    $helper->getErrorCode(),
-                    $helper->getErrorReason(),
-                    $helper->getErrorDescription()
-                ]);
-
             }
 
             if (! $token->isLongLived()) {
@@ -52,6 +53,7 @@ class FacebookCallbackController extends Controller
 
                 // Extend the access token.
                 try {
+
                     $token = $oauth_client->getLongLivedAccessToken($token);
                 } catch (FacebookSDKException $e) {
                     return Redirect::back()->withErrors('Algo saiu errado! ' . $e->getMessage());
