@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "doctrine/dbal": "~2.3",
         "guzzlehttp/guzzle": "^6.0",
-        "sammyk/laravel-facebook-sdk": "~3.0"
+        "sammyk/laravel-facebook-sdk": "~3.0",
+        "barryvdh/laravel-cors": "0.7.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

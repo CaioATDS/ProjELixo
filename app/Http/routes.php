@@ -25,6 +25,7 @@
 */
 
 use App\Http\Controllers\Auth\FacebookCallbackController;
+use App\Http\Controllers\Constats;
 use App\Http\Controllers\routes\HomeController;
 use App\Http\Controllers\routes\ItensController;
 use App\Http\Controllers\routes\StaticasController;
@@ -40,6 +41,11 @@ use App\Http\Controllers\Users\UsersController;
 // Endpoint that is redirected to after an authentication attempt
 Route::get('/facebook/callback', [ 'as' => 'callback' , FacebookCallbackController::index(), ]);
 
+// API Providers
+Route::group([ 'prefix' => 'API', 'middleware' => 'cors', ], function(){
+    Route::get('indexAPI',  [ 'as' => 'indexAPI',   HomeController::indexAPI(), ]);
+});
+
 // perfil rota
 Route::group(['prefix' => 'Perfil', 'middleware' => [ 'auth', 'roles:Usuário', ], ], function(){
 
@@ -52,6 +58,11 @@ Route::group(['prefix' => 'Perfil', 'middleware' => [ 'auth', 'roles:Usuário', 
 
 // rotas publicas paginas estáticas
 Route::group(['prefix' => '',], function(){
+    Route::get('array', function (){
+
+     dd( json_encode( Constats::listaCategorias() ) );
+
+    });
 
     Route::get('/Parceiros',    [ 'as' => 'parceiros',  StaticasController::parceiros(), ]);
     Route::get('/Projeto',      [ 'as' => 'projeto',    StaticasController::projeto(),   ]);

@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Auth;
                 <div class="expanded-wrapper">
 
                     <div class="middle-content text-center radius-5">
-                        <a class="link-content" href="{{asset('Subcategoria/'.$Categoria->categoria_id)}}" style="display: block">
+                        <a class="link-content" href="{{asset('Subcategoria/'.$Categoria['categoria_id'])}}" style="display: block">
 
                             <span>
-                                <img src="{{asset('/images/categorias/'.$Categoria->imagem)}}" alt="" style="height: 110px">
+                                <img src="{{asset('/images/categorias/'.$Categoria['imagem'])}}" alt="" style="height: 110px">
                             </span>
-                            <span class="cat-titulo"> {{$Categoria->categorias_descricao}}</span>
+                            <span class="cat-titulo"> {{$Categoria['categorias_descricao']}}</span>
 
                         </a>
                     </div>

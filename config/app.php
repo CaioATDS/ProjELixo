@@ -144,6 +144,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
+
     ],
 
     /*
@@ -192,6 +194,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Facebook'  => SammyK\LaravelFacebookSdk\FacebookFacade::class,
+        'Cors'      => Barryvdh\Cors\ServiceProvider::class,
 
     ],
 
