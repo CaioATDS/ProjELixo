@@ -1,0 +1,7 @@
+/vendor
+!/vendor/sammyk/
+!/vendor/sammyk/LaravelFacebookSdk/
+/node_modules
+Homestead.yaml
+.env
+.idea
